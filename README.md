@@ -1,2 +1,2 @@
 # Project-Trippit
-Travel Itenerary Planner/Tracker
+Travel Itinerary Planner/Tracker
