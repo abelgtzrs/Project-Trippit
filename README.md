@@ -13,8 +13,6 @@ So that I can organize my travel plans, track my expenses, and stay within my bu
 
 ## **Features**
 
-### **Main Features:**
-
 **Budget Management:**
 - Set a total travel budget.
 - Automatically subtract expenses (e.g., flights, hotels, activities) from the budget.
