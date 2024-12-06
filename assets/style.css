@@ -1,31 +1,49 @@
-
-  #left-column {
+#columns-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+    box-sizing: border-box;
+  }
+  
+  #left-column,
+  #middle-column,
+  #right-column {
     width: 30%;
     padding: 20px;
     background-color: #f9f9f9;
-    border-right: 1px solid #ccc;
+    border: 1px solid #ccc;
     box-sizing: border-box;
   }
-
-  #left-column div {
+  
+  #columns-container div {
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #fff;
   }
-  #left-column h2 {
+  
+  #columns-container h2 {
     margin-top: 0;
     font-size: 18px;
     color: #333;
   }
-  #left-column label {
+  
+  #left-column label,
+  #middle-column label,
+  #right-column label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
     color: #555;
   }
-  #left-column input {
+  
+  #left-column input,
+  #middle-column input,
+  #right-column input {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -33,7 +51,10 @@
     border-radius: 5px;
     box-sizing: border-box;
   }
-  #left-column button {
+  
+  #left-column button,
+  #middle-column button,
+  #right-column button {
     padding: 10px 15px;
     background-color: #007bff;
     color: #fff;
@@ -41,4 +62,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+  }
+  #map {
+    height: 300px;
+    width: 90%;
   }
