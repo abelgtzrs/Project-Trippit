@@ -18,14 +18,26 @@
   <main>
     <section id="left-box">
       <div id="budget-input">
+        <h2>Set Budget</h2>
         <label for="Total-Budget">Total Budget:</label>
         <input type="text" id="total-budget" name="Total-Budget">
+        <button id="save-budget">Save Budget</button>
       </div>
       <div id="destination-input">
+        <h2>Add Destination</h2>
         <label for="destination">Destination:</label>
         <input type="text" id="destination" name="destination">
+        <label for="destination-start-date">Start Date:</label>
+        <input type="date" id="destination-start-date" name="destination-start-date" required>
+        <label for="destination-end-date">End Date:</label>
+        <input type="date" id="destination-end-date" name="destination-end-date" required>
+        <button id="add-destination">Add Destination</button>
       </div>
       <div id="flights-input">
+        <h2>Add Flight</h2>
+        <label for="airline">Airline:</label>
+        <input type="text" id="airline" name="airline" placeholder="Enter airline" required>
+        <label for="flight-number">Flight Number:</label>
         <label for="departing-flight">Departing flight</label>
         <input type="date" id="departing-flight" name="departing-flight">
         <label for="returning-flight">Returning flight</label>
@@ -33,8 +45,39 @@
         <label for="flight-price">Flight Cost</label>
         <input type="text" id="flight-price" name="flight-price">
         <label for="traveler-number">Travelers</label>
-        <input type="number">
+        <input type="number" id="traveler-number" name="traveler-number">
+        <button id="add-flight">Add Flight</button>
       </div>
+      <div id="hotels-section">
+        <h2>Add Hotel</h2>
+        <label for="hotel-name">Hotel Name:</label>
+        <input type="text" id="hotel-name" name="hotel-name" placeholder="Enter hotel name" required>
+        <label for="hotel-checkin">Check-in Date:</label>
+        <input type="date" id="hotel-checkin" name="hotel-checkin" required>
+        <label for="hotel-checkout">Check-out Date:</label>
+        <input type="date" id="hotel-checkout" name="hotel-checkout" required>
+        <label for="hotel-cost">Cost per Night:</label>
+        <input type="number" id="hotel-cost" name="hotel-cost" placeholder="Enter cost per night" required>
+        <button id="add-hotel">Add Hotel</button>
+      </div>
+      <div id="activities-input">
+        <h2>Add Activity</h2>
+        <label for="activity-name">Activity Name:</label>
+        <input type="text" id="activity-name" name="activity-name" placeholder="Enter activity" required>
+        <label for="activity-date">Date:</label>
+        <input type="date" id="activity-date" name="activity-date" required>
+        <label for="activity-time">Time:</label>
+        <input type="time" id="activity-time" name="activity-time">
+        <label for="activity-cost">Cost:</label>
+        <input type="number" id="activity-cost" name="activity-cost" placeholder="Enter activity cost">
+        <button id="add-activity">Add Activity</button>
+      </div>
+    </section>
+    <section class="column" id="middle-column">
+
+    </section>
+    <section class="column" id="right-column">
+      
     </section>
   </main>
 

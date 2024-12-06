@@ -1,0 +1,53 @@
+body {
+    display: flex;
+    flex-direction: row; /* Aligns main sections horizontally */
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  #left-column {
+    width: 30%; /* Takes 30% of the page width */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for better visibility */
+    border-right: 1px solid #ccc; /* Subtle separation from other columns */
+    box-sizing: border-box;
+  }
+
+  #left-column div {
+    margin-bottom: 20px; /* Space between sections */
+    padding: 10px;
+    border: 1px solid #ddd; /* Subtle border for each section */
+    border-radius: 5px; /* Rounded corners for sections */
+    background-color: #fff; /* White background for contrast */
+  }
+  #left-column h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333; /* Dark gray for section headings */
+  }
+  #left-column label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555; /* Medium gray for labels */
+  }
+  #left-column input {
+    width: 100%; /* Full width input */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Includes padding in width calculation */
+  }
+  #left-column button {
+    padding: 10px 15px;
+    background-color: #007bff; /* Blue background for buttons */
+    color: #fff; /* White text for contrast */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  #left-column button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
