@@ -2,20 +2,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Travel Itinerary Planner</title>
+  <title>Trippit! - Travel Itinerary Planner</title>
   <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
   <header>
-    <h1>Travel Itinerary Planner</h1>
+    <h1>Trippit!</h1>
+    <nav>
+      <ul>
+        <li><a href=".">Home</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
-
+    <section id="left-box">
+      <div id="budget-input">
+        <label for="Total-Budget">Total Budget:</label>
+        <input type="text" id="total-budget" name="Total-Budget">
+      </div>
+      <div id="destination-input">
+        <label for="destination">Destination:</label>
+        <input type="text" id="destination" name="destination">
+      </div>
+      <div id="flights-input">
+        <label for="departing-flight">Departing flight</label>
+        <input type="date" id="departing-flight" name="departing-flight">
+        <label for="returning-flight">Returning flight</label>
+        <input type="date" id="returning-flight" name="returning-flight">
+        <label for="flight-price">Flight Cost</label>
+        <input type="text" id="flight-price" name="flight-price">
+        <label for="traveler-number">Travelers</label>
+        <input type="number">
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2024 Travel Itinerary Planner. All rights reserved.</p>
+    <p>&copy; 2024 Trippit. All rights reserved.</p>
   </footer>
   <script src="./assets/script.js"></script>
 </body>
