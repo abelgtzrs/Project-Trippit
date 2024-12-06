@@ -30,7 +30,8 @@
   </header>
 
   <main>
-    <section class="column" id="left-column">
+    <div id="columns-container">
+    <section id="left-column">
       <div id="budget-input">
         <h2>Set Budget</h2>
         <label for="Total-Budget">Total Budget:</label>
@@ -86,25 +87,82 @@
         <input type="number" id="activity-cost" name="activity-cost" placeholder="Enter activity cost">
         <button id="add-activity">Add Activity</button>
       </div>
-=======
-      </div>
-      <div id="activities-input">
-        <label for="activities">Activities:</label>
-        <input type="text" id="activities" name="activities">
-      </div>
-      <div class="budget-container">
-    <div class="budget-category">
-        <h2>Transportation</h2>
-        <p>Remaining Budget: <span id="remaining-transportation">$0.00</span></p>
-    </div>
-    </div>
     </section>
     <section class="column" id="middle-column">
+      <div id="budget-overview">
+        <h2>Budget Overview</h2>
+        <p><strong>Total Budget:</strong> <span id="display-budget">$0</span></p>
+        <p><strong>Total Expenses:</strong> <span id="display-expenses">$0</span></p>
+        <p><strong>Remaining Budget:</strong> <span id="display-remaining">$0</span></p>
+      </div>
 
+      <div id="destination-summary">
+        <h2>Destinations</h2>
+        <ul id="destination-list">
+          <li><p>Tokyo</p></li>
+        </ul>
+      </div>
+
+      <div id="flights-summary">
+        <h2>Flights</h2>
+        <ul id="flight-list">
+          
+        </ul>
+      </div>
+
+      <div id="hotels-summary">
+        <h2>Hotels</h2>
+        <ul id="hotel-list">
+          
+        </ul>
+      </div>
+
+      <div id="activities-summary">
+        <h2>Activities</h2>
+        <ul id="activity-list">
+          
+        </ul>
+      </div>
     </section>
     <section class="column" id="right-column">
-      
+      <div id="map-section">
+        <h2>Interactive Map</h2>
+        <div id="map">
+          Map will be displayed here.
+        </div>
+      </div>
+    
+      <div id="checklist-section">
+        <h2>Packing Checklist</h2>
+        <ul id="checklist">
+          <li>
+            <label for="passport">Passport</label>
+            <input type="checkbox" id="passport">
+          </li>
+          <li>
+            <label for="tickets">Flight Tickets</label>
+            <input type="checkbox" id="tickets">
+          </li>
+          <li>
+            <label for="clothing">Clothing</label>
+            <input type="checkbox" id="clothing">
+          </li>
+          <li>
+            <label for="toiletries">Toiletries</label>
+            <input type="checkbox" id="toiletries">
+          </li>
+        </ul>
+        <input type="text" id="new-item" placeholder="Add an item">
+        <button id="add-item">Add Item</button>
+      </div>
+    
+      <div id="notes-section">
+        <h2>Travel Notes</h2>
+        <textarea id="notes" rows="5" placeholder="Write your travel notes here..."></textarea>
+        <button id="save-notes">Save Notes</button>
+      </div>
     </section>
+  </div>
   </main>
 
   <footer>
