@@ -1,3 +1,13 @@
+// javascript for Navbar
+document.addEventListener('DOMContentLoaded', function () {
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  const navbarCollapse = document.querySelector('#navbarNavAltMarkup');
+
+  navbarToggler.addEventListener('click', function () {
+    navbarCollapse.classList.toggle('show');
+  });
+});
+
 // Calculate the total budget and allocate it to categories
 function calculateBudgets(totalBudget) {
   const percentages = {
