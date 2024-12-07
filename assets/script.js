@@ -7,6 +7,18 @@ document.addEventListener('DOMContentLoaded', function () {
     navbarCollapse.classList.toggle('show');
   });
 });
+//Save and display Budget
+const saveBudget = document.querySelector("#save-budget");
+const textBudget = document.querySelector("#total-budget");
+const budgetDisplay = document.querySelector("#display-budget")
+
+let totalBudget;
+
+saveBudget.addEventListener("click", function() {
+  totalBudget = parseFloat(textBudget.value);
+  budgetDisplay.textContent = `$${totalBudget}`
+} )
+
 
 // Calculate the total budget and allocate it to categories
 function calculateBudgets(totalBudget) {
