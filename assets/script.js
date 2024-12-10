@@ -19,6 +19,22 @@ saveBudget.addEventListener("click", function() {
   budgetDisplay.textContent = `$${totalBudget}`;
 } )
 
+//Displays destination information
+document.addEventListener('DOMContentLoaded', function () {
+  const destination = document.querySelector("#destination");
+  const destinationStartDate = document.querySelector("#destination-start-date");
+  const destinationEndDate = document.querySelector("#destination-end-date");
+  const addDestinationButton = document.querySelector("#add-destination");
+
+  function updateDestinationInfo() {
+      document.querySelector("#destination-display").textContent = destination.value;
+      document.querySelector("#startdate-display").textContent = destinationStartDate.value;
+      document.querySelector("#enddate-display").textContent = destinationEndDate.value;
+  }
+
+  addDestinationButton.addEventListener("click", updateDestinationInfo);
+});
+
 //Add and display hotels
 const saveHotel = document.querySelector("#add-hotel");
 const hotelName = document.querySelector("#hotel-name");
