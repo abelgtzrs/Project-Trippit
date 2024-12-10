@@ -24,6 +24,35 @@ const saveHotel = document.querySelector("#add-hotel");
 const hotelName = document.querySelector("#hotel-name");
 const hotelCheckIn = document.querySelector("#hotel-checkin");
 const hotelCheckOut = document.querySelector("#hotel-checkout");
+const hotelCost = document.querySelector("#hotel-cost");
+const hotelNameDisplay = document.querySelector("#hotelname-display");
+const hotelCheckInDisplay = document.querySelector("#hotelcheckin-display");
+const hotelCheckOutDisplay = document.querySelector("#hotelcheckout-display");
+const hotelCostDisplay = document.querySelector("#hotelcost-display")
+
+//Displays destination information
+document.addEventListener('DOMContentLoaded', function () {
+  const destination = document.querySelector("#destination");
+  const destinationStartDate = document.querySelector("#destination-start-date");
+  const destinationEndDate = document.querySelector("#destination-end-date");
+  const addDestinationButton = document.querySelector("#add-destination");
+
+  function updateDestinationInfo() {
+      document.querySelector("#destination-display").textContent = destination.value;
+      document.querySelector("#startdate-display").textContent = destinationStartDate.value;
+      document.querySelector("#enddate-display").textContent = destinationEndDate.value;
+  }
+
+  addDestinationButton.addEventListener("click", updateDestinationInfo);
+});
+
+//Display Hotel Information
+saveHotel.addEventListener("click", function() {
+  hotelNameDisplay.textContent = hotelName.value;
+  hotelCheckInDisplay.textContent = hotelCheckIn.value;
+  hotelCheckOutDisplay.textContent = hotelCheckOut.value;
+  
+})
 //
 
 // Calculate the total budget and allocate it to categories
