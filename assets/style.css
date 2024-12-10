@@ -1,7 +1,10 @@
-nav a{
-    text-align: right;
+#navbarNavAltMarkup {
+  justify-content: flex-end;
 }
-
+.navbar-nav ul li{
+  display: inline-block;
+  margin-right: 50px;
+}
 #columns-container {
     display: flex;
     justify-content: center;
