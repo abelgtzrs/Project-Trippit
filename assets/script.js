@@ -16,7 +16,7 @@ let totalBudget;
 
 saveBudget.addEventListener("click", function() {
   totalBudget = parseFloat(textBudget.value);
-  budgetDisplay.textContent = `$${totalBudget}`
+  budgetDisplay.textContent = `$${totalBudget}`;
 } )
 
 
