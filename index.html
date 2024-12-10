@@ -32,14 +32,18 @@
   </header>
 
   <main>
-    <div id="columns-container">
+    <div id="columns-container"> <!-- Whole Main Page Container --->
+      
+      <!--Input -->
     <section id="left-column">
+      <!-- Budget Input -->
       <div id="budget-input">
         <h2>Set Budget</h2>
         <label for="Total-Budget">Total Budget:</label>
         <input type="text" id="total-budget" name="Total-Budget">
         <button id="save-budget">Save Budget</button>
       </div>
+      <!-- Destination Input --->
       <div id="destination-input">
         <h2>Add Destination</h2>
         <label for="destination">Destination:</label>
@@ -50,6 +54,7 @@
         <input type="date" id="destination-end-date" name="destination-end-date" required>
         <button id="add-destination">Add Destination</button>
       </div>
+      <!-- Flight Input --->
       <div id="flights-input">
         <h2>Add Flight</h2>
         <label for="airline">Airline:</label>
@@ -65,6 +70,7 @@
         <input type="number" id="traveler-number" name="traveler-number">
         <button id="add-flight">Add Flight</button>
       </div>
+      <!-- Hotel Input --->
       <div id="hotels-section">
         <h2>Add Hotel</h2>
         <label for="hotel-name">Hotel Name:</label>
@@ -77,6 +83,7 @@
         <input type="number" id="hotel-cost" name="hotel-cost" placeholder="Enter cost per night" required>
         <button id="add-hotel">Add Hotel</button>
       </div>
+      <!-- Activity Input --->
       <div id="activities-input">
         <h2>Add Activity</h2>
         <label for="activity-name">Activity Name:</label>
@@ -90,50 +97,68 @@
         <button id="add-activity">Add Activity</button>
       </div>
     </section>
+
+    <!-- Summary -->
     <section class="column" id="middle-column">
+      <!-- Budget Overview --->
       <div id="budget-overview">
         <h2>Budget Overview</h2>
-        <p><strong>Total Budget:</strong> <span id="display-budget">$0</span></p>
-        <p><strong>Total Expenses:</strong> <span id="display-expenses">$0</span></p>
-        <p><strong>Remaining Budget:</strong> <span id="display-remaining">$0</span></p>
+        <li><p><strong>Total Budget:</strong> <span id="display-budget">$0</span></p></li>
+        <li><p><strong>Total Expenses:</strong> <span id="display-expenses">$0</span></p></li>
+        <li><p><strong>Remaining Budget:</strong> <span id="display-remaining">$0</span></p></li>
       </div>
-
+      <!-- Destination Summary --->
       <div id="destination-summary">
         <h2>Destinations</h2>
         <ul id="destination-list">
-          <li><p>Tokyo</p></li>
+          <li><p><strong>Destination:</strong> <span id="destination-display">Destination</span></p></li>
+          <li><p><strong>Start Date:</strong> <span id="startdate-display">Start Date</span></p></li>
+          <li><p><strong>End Date:</strong> <span id="enddate-display">End Date: </span></p></li>
         </ul>
       </div>
-
+      <!-- Flight Summary --->
       <div id="flights-summary">
         <h2>Flights</h2>
         <ul id="flight-list">
-          
+          <li><p><strong>Airline</strong> <span id="airline-display">*****</span></p></li>
+          <li><p><strong>Flight Number</strong> <span id="flightnumber-display">*****</span></p></li>
+          <li><p><strong>Departing Flight</strong> <span id="departingflight-display">*****</span></p></li>
+          <li><p><strong>Returning Flight</strong> <span id="returningflight-display">*****</span></p></li>
+          <li><p><strong>Cost</strong> <span id="flightcost-display">*****</span></p></li>
         </ul>
       </div>
-
+      <!-- Hotel Summary --->
       <div id="hotels-summary">
         <h2>Hotels</h2>
         <ul id="hotel-list">
-          
+          <li><p><strong>Hotel Name</strong> <span id="hotelname-display">*****</span></p></li>
+          <li><p><strong>Hotel Check In</strong> <span id="hotelcheckin-display">*****</span></p></li>
+          <li><p><strong>Hotel Checkout</strong> <span id="hotelcheckout-display">*****</span></p></li>
         </ul>
       </div>
-
+      <!-- Activity Summary --->
       <div id="activities-summary">
         <h2>Activities</h2>
         <ul id="activity-list">
-          
+          <li><p><strong>Activity Name: </strong> <span id="activityname-display">*****</span></p></li>
+          <li><p><strong>Date: </strong> <span id="activitydate-display">*****</span></p></li>
+          <li><p><strong>Time: </strong> <span id="activitytime-display">*****</span></p></li>
+          <li><p><strong>Cost</strong> <span id="activitycost-display">*****</span></p></li>
         </ul>
       </div>
     </section>
+
+
+    <!-- Other Features --->
     <section class="column" id="right-column">
+      <!-- Interactive Map --->
       <div id="map-section">
         <h2>Interactive Map</h2>
         <div id="map">
           Map will be displayed here.
         </div>
       </div>
-    
+      <!-- Checklist --->
       <div id="checklist-section">
         <h2>Packing Checklist</h2>
         <ul id="checklist">
@@ -157,7 +182,7 @@
         <input type="text" id="new-item" placeholder="Add an item">
         <button id="add-item">Add Item</button>
       </div>
-    
+      <!-- Notes --->
       <div id="notes-section">
         <h2>Travel Notes</h2>
         <textarea id="notes" rows="5" placeholder="Write your travel notes here..."></textarea>

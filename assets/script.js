@@ -19,6 +19,12 @@ saveBudget.addEventListener("click", function() {
   budgetDisplay.textContent = `$${totalBudget}`;
 } )
 
+//Add and display hotels
+const saveHotel = document.querySelector("#add-hotel");
+const hotelName = document.querySelector("#hotel-name");
+const hotelCheckIn = document.querySelector("#hotel-checkin");
+const hotelCheckOut = document.querySelector("#hotel-checkout");
+//
 
 // Calculate the total budget and allocate it to categories
 function calculateBudgets(totalBudget) {
