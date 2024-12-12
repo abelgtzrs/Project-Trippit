@@ -70,7 +70,28 @@ saveHotel.addEventListener("click", function() {
   
 })
 //
+// Display flight information
+const flightName = document.querySelector("#airline");
+const flightNumber = document.querySelector("#flight-number");
+const departingFlight = document.querySelector("#departing-flight");
+const returningFlight = document.querySelector("#returning-flight");
+const flightPrice = document.querySelector("#flight-price");
+const travelerNumber = document.querySelector("#traveler-number");
+const addFlight = document.querySelector("#add-flight")
 
+function addFlightInfo () {
+  const  flightData = {
+    airline: flightName.value,
+    flightNumber: flightName.value,
+    departingFlight: departingFlight.value,
+    returningFlight: returningFlight.value,
+    flightPrice: flightPrice.value,
+    travelerNumber: travelerNumber.value,
+    addFlight: addFlight.value
+  }
+  
+}
+document.addEventListener()
 // Calculate the total budget and allocate it to categories
 function calculateBudgets(totalBudget) {
   const percentages = {
