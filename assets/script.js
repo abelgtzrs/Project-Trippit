@@ -1,4 +1,4 @@
-// javascript for Navbar
+// javascript for Navbar----------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
   const navbarToggler = document.querySelector('.navbar-toggler');
   const navbarCollapse = document.querySelector('#navbarNavAltMarkup');
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     navbarCollapse.classList.toggle('show');
   });
 });
-//Display Budget information
+//Display Budget information------------------------------------------------------------------------------------
 const saveBudget = document.querySelector("#save-budget");
 const textBudget = document.querySelector("#total-budget");
 const budgetDisplay = document.querySelector("#display-budget")
@@ -18,7 +18,8 @@ saveBudget.addEventListener("click", function() {
   totalBudget = parseFloat(textBudget.value);
   budgetDisplay.textContent = `$${totalBudget}`;
 } )
-//Displays destination information
+
+//Displays destination information-----------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function () {
   const destination = document.querySelector("#destination");
   const destinationStartDate = document.querySelector("#destination-start-date");
@@ -33,9 +34,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
   addDestinationButton.addEventListener("click", updateDestinationInfo);
 });
-//Display Flight information
 
-//Display Hotel information
+//Display Flight information------------------------------------------------------------------------------------
+
+const addFlight = document.querySelector("#add-flight"); 
+
+const airline = document.querySelector("#airline"); 
+const flightNumber = document.querySelector("#flight-number");
+const departingDate = document.querySelector("#departing-flight");
+const returningDate = document.querySelector("#returning-flight");
+const flightCost = document.querySelector("#flight-cost");
+const flightTraveler = document.querySelector("#traveler-number");
+const airlineDisplay = document.querySelector("#airline-display");
+
+const flightNumberDisplay = document.querySelector("#flightnumber-display"); 
+const departingDateDisplay = document.querySelector("#departingflight-display");
+const returningDateDisplay = document.querySelector("#returningflight-display");
+const flightCostDisplay = document.querySelector("#flightcost-display");
+const flightTravelerDisplay = document.querySelector("#traveler-display");
+
+function updateFlight() {
+  flightNumberDisplay.textContent = flightNumber.value || "N/A";
+  departingDateDisplay.textContent = departingDate.value || "N/A";
+  returningDateDisplay.textContent = returningDate.value || "N/A";
+  flightCostDisplay.textContent = flightCost.value ~~ "N/A";
+  flightTravelerDisplay.textContent = flightTraveler.value || "N/A";
+}
+
+addFlight.addEventListener("click", (event) => {
+  event.preventDefault();
+  updateFlight();
+});
+
+//Display Hotel information--------------------------------------------------------------------------------------
 const saveHotel = document.querySelector("#add-hotel");
 const hotelName = document.querySelector("#hotel-name");
 const hotelCheckIn = document.querySelector("#hotel-checkin");
@@ -44,11 +75,20 @@ const hotelCost = document.querySelector("#hotel-cost");
 const hotelNameDisplay = document.querySelector("#hotelname-display");
 const hotelCheckInDisplay = document.querySelector("#hotelcheckin-display");
 const hotelCheckOutDisplay = document.querySelector("#hotelcheckout-display");
-const hotelCostDisplay = document.querySelector("#hotelcost-display")
+const hotelCostDisplay = parseFloat(document.querySelector("#hotelcost-display"));
 
-//
+function updateHotel() {
+  hotelNameDisplay.textContent = hotelName.value;
+  hotelCheckInDisplay.textContent = hotelCheckIn.value;
+  hotelCheckOutDisplay.textContent = hotelCheckOut.value;
+  hotelCostDisplay.textContent = `$${hotelCost.value}`;
+}
 
-// Calculate the total budget and allocate it to categories
+saveHotel.addEventListener("click", updateHotel)
+
+//Display Activity information------------------------------------------------------------------------------------
+
+// Calculate the total budget and allocate it to categories------------------------------------------------------
 function calculateBudgets(totalBudget) {
   const percentages = {
     transportation: 0.3,
