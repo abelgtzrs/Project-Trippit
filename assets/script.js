@@ -46,6 +46,14 @@ const hotelCheckInDisplay = document.querySelector("#hotelcheckin-display");
 const hotelCheckOutDisplay = document.querySelector("#hotelcheckout-display");
 const hotelCostDisplay = document.querySelector("#hotelcost-display")
 
+//Displays activity information
+  const activityName = document.querySelector("#activity-name");
+  const activityDate = document.querySelector("#activity-date");
+  const activityTime = document.querySelector("#activity-time");
+  const activityCostDisplay = document.querySelector("#activity-cost");
+  const addActivityButton = document.querySelector("#add-destination");
+
+
 //Displays destination information
 document.addEventListener('DOMContentLoaded', function () {
   const destination = document.querySelector("#destination");
@@ -69,7 +77,19 @@ saveHotel.addEventListener("click", function() {
   hotelCheckOutDisplay.textContent = hotelCheckOut.value;
   
 })
-//
+//Display Activity Information
+document.querySelector("#add-activity").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent form submission
+
+  const activityName = document.querySelector("#activity-name").value;
+  const activityDate = document.querySelector("#activity-date").value;
+  const activityTime = document.querySelector("#activity-time").value;
+  const activityCost = document.querySelector("#activity-cost").value;
+
+  if (!activityName || !activityDate || !activityTime || !activityCost) {
+      alert("Please fill out all fields!");
+      return;
+  }
 
 // Calculate the total budget and allocate it to categories
 function calculateBudgets(totalBudget) {
