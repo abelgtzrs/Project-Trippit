@@ -45,8 +45,8 @@ const departingDate = document.querySelector("#departing-flight");
 const returningDate = document.querySelector("#returning-flight");
 const flightCost = document.querySelector("#flight-cost");
 const flightTraveler = document.querySelector("#traveler-number");
-const airlineDisplay = document.querySelector("#airline-display");
 
+const airlineDisplay = document.querySelector("#airline-display");
 const flightNumberDisplay = document.querySelector("#flightnumber-display"); 
 const departingDateDisplay = document.querySelector("#departingflight-display");
 const returningDateDisplay = document.querySelector("#returningflight-display");
@@ -54,10 +54,11 @@ const flightCostDisplay = document.querySelector("#flightcost-display");
 const flightTravelerDisplay = document.querySelector("#traveler-display");
 
 function updateFlight() {
+  airlineDisplay.textContent = airline.value || "N/A";
   flightNumberDisplay.textContent = flightNumber.value || "N/A";
   departingDateDisplay.textContent = departingDate.value || "N/A";
   returningDateDisplay.textContent = returningDate.value || "N/A";
-  flightCostDisplay.textContent = flightCost.value ~~ "N/A";
+  flightCostDisplay.textContent = flightCost.value || "N/A";
   flightTravelerDisplay.textContent = flightTraveler.value || "N/A";
 }
 
@@ -68,25 +69,57 @@ addFlight.addEventListener("click", (event) => {
 
 //Display Hotel information--------------------------------------------------------------------------------------
 const saveHotel = document.querySelector("#add-hotel");
+
 const hotelName = document.querySelector("#hotel-name");
 const hotelCheckIn = document.querySelector("#hotel-checkin");
 const hotelCheckOut = document.querySelector("#hotel-checkout");
 const hotelCost = document.querySelector("#hotel-cost");
+
 const hotelNameDisplay = document.querySelector("#hotelname-display");
 const hotelCheckInDisplay = document.querySelector("#hotelcheckin-display");
 const hotelCheckOutDisplay = document.querySelector("#hotelcheckout-display");
-const hotelCostDisplay = parseFloat(document.querySelector("#hotelcost-display"));
+const hotelCostDisplay = document.querySelector("#hotelcost-display");
 
 function updateHotel() {
   hotelNameDisplay.textContent = hotelName.value;
   hotelCheckInDisplay.textContent = hotelCheckIn.value;
   hotelCheckOutDisplay.textContent = hotelCheckOut.value;
-  hotelCostDisplay.textContent = `$${hotelCost.value}`;
+  hotelCostDisplay.textContent = `$${hotelCost.value.toFixed(2)}`;
 }
 
 saveHotel.addEventListener("click", updateHotel)
 
 //Display Activity information------------------------------------------------------------------------------------
+const addActivityButton = document.querySelector("#add-activity");
+
+const activityNameInput = document.querySelector("#activity-name");
+const activityDateInput = document.querySelector("#activity-date");
+const activityTimeInput = document.querySelector("#activity-time");
+const activityCostInput = document.querySelector("#activity-cost");
+
+const activityNameDisplay = document.querySelector("#activityname-display");
+const activityDateDisplay = document.querySelector("#activitydate-display");
+const activityTimeDisplay = document.querySelector("#activitytime-display");
+const activityCostDisplay = document.querySelector("#activitycost-display");
+
+function updateActivity() {
+  // Get and validate input values
+  const activityName = activityNameInput
+  const activityDate = activityDateInput
+  const activityTime = activityTimeInput
+  const activityCost = parseFloat(activityCostInput.value) || 0;
+
+  // Update the summary display
+  activityNameDisplay.textContent = activityName.value || "N/A";;
+  activityDateDisplay.textContent = activityDate.value || "N/A";;
+  activityTimeDisplay.textContent = activityTime.value || "N/A";;
+  activityCostDisplay.textContent = `$${activityCost.toFixed(2)}`;
+
+// Add event listener to the "Add Activity" button
+addActivityButton.addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent form submission or page refresh
+  updateActivity();
+});
 
 // Calculate the total budget and allocate it to categories------------------------------------------------------
 function calculateBudgets(totalBudget) {
@@ -142,4 +175,4 @@ for (const category in initialBudgets) {
 }
 
 recordExpense('transportation', 500);
-updateRemainingBudgets();
+updateRemainingBudgets()}
