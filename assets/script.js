@@ -46,21 +46,6 @@ const hotelCheckInDisplay = document.querySelector("#hotelcheckin-display");
 const hotelCheckOutDisplay = document.querySelector("#hotelcheckout-display");
 const hotelCostDisplay = document.querySelector("#hotelcost-display")
 
-//Displays destination information
-document.addEventListener('DOMContentLoaded', function () {
-  const destination = document.querySelector("#destination");
-  const destinationStartDate = document.querySelector("#destination-start-date");
-  const destinationEndDate = document.querySelector("#destination-end-date");
-  const addDestinationButton = document.querySelector("#add-destination");
-
-  function updateDestinationInfo() {
-      document.querySelector("#destination-display").textContent = destination.value;
-      document.querySelector("#startdate-display").textContent = destinationStartDate.value;
-      document.querySelector("#enddate-display").textContent = destinationEndDate.value;
-  }
-
-  addDestinationButton.addEventListener("click", updateDestinationInfo);
-});
 
 //Display Hotel Information
 saveHotel.addEventListener("click", function() {
@@ -69,7 +54,40 @@ saveHotel.addEventListener("click", function() {
   hotelCheckOutDisplay.textContent = hotelCheckOut.value;
   
 })
-//
+
+// Displays packing checklist
+const packingItem = document.querySelector("#new-item");
+const addItemButton = document.querySelector("#add-item");
+const checklistSection = document.querySelector("#checklist-section");
+
+function addCheckbox() {
+  let labelText = packingItem.value;
+  let container = document.createElement("div");
+  container.style.display = "flex";
+  container.style.alignItems = "center";
+  container.style.justifyContent = "flex-start"; 
+  
+  let checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.id = labelText.replace(/\s/g, "_");
+  
+  let label = document.createElement("label");
+  label.htmlFor = checkbox.id;
+  label.textContent = labelText;
+  label.style.marginLeft = "5px"; 
+
+  // Append elements to the container
+  container.appendChild(checkbox);
+  container.appendChild(label);
+  // Append the container to the checklist section
+  checklistSection.appendChild(container);
+
+  // Clear the input field
+  packingItem.value = "";
+}
+// Add an event listener to the add-item button
+addItemButton.addEventListener("click", addCheckbox);
+
 
 // Calculate the total budget and allocate it to categories
 function calculateBudgets(totalBudget) {
