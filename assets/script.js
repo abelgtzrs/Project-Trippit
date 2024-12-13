@@ -17,7 +17,7 @@ let totalBudget;
 saveBudget.addEventListener("click", function() {
   totalBudget = parseFloat(textBudget.value);
   budgetDisplay.textContent = `$${totalBudget}`;
-});
+} )
 
 //Displays destination information
 document.addEventListener('DOMContentLoaded', function () {
@@ -36,12 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //Add and display hotels
-function displayHotels() {
-  $("#hotel-name").autocomplete({
-    source: ["Hotel A", "Hotel B", "Hotel C", "Hotel D", "Hotel ABCDE"]
-  });
-}
-
 const saveHotel = document.querySelector("#add-hotel");
 const hotelName = document.querySelector("#hotel-name");
 const hotelCheckIn = document.querySelector("#hotel-checkin");
@@ -52,21 +46,6 @@ const hotelCheckInDisplay = document.querySelector("#hotelcheckin-display");
 const hotelCheckOutDisplay = document.querySelector("#hotelcheckout-display");
 const hotelCostDisplay = document.querySelector("#hotelcost-display")
 
-//Displays destination information
-document.addEventListener('DOMContentLoaded', function () {
-  const destination = document.querySelector("#destination");
-  const destinationStartDate = document.querySelector("#destination-start-date");
-  const destinationEndDate = document.querySelector("#destination-end-date");
-  const addDestinationButton = document.querySelector("#add-destination");
-
-  function updateDestinationInfo() {
-      document.querySelector("#destination-display").textContent = destination.value;
-      document.querySelector("#startdate-display").textContent = destinationStartDate.value;
-      document.querySelector("#enddate-display").textContent = destinationEndDate.value;
-  }
-
-  addDestinationButton.addEventListener("click", updateDestinationInfo);
-});
 
 //Display Hotel Information
 saveHotel.addEventListener("click", function() {
@@ -75,29 +54,41 @@ saveHotel.addEventListener("click", function() {
   hotelCheckOutDisplay.textContent = hotelCheckOut.value;
   
 })
-//
-// Display flight information
-const flightName = document.querySelector("#airline");
-const flightNumber = document.querySelector("#flight-number");
-const departingFlight = document.querySelector("#departing-flight");
-const returningFlight = document.querySelector("#returning-flight");
-const flightPrice = document.querySelector("#flight-price");
-const travelerNumber = document.querySelector("#traveler-number");
-const addFlight = document.querySelector("#add-flight")
 
-function addFlightInfo () {
-  const  flightData = {
-    airline: flightName.value,
-    flightNumber: flightName.value,
-    departingFlight: departingFlight.value,
-    returningFlight: returningFlight.value,
-    flightPrice: flightPrice.value,
-    travelerNumber: travelerNumber.value,
-    addFlight: addFlight.value
-  }
+// Displays packing checklist
+const packingItem = document.querySelector("#new-item");
+const addItemButton = document.querySelector("#add-item");
+const checklistSection = document.querySelector("#checklist-section");
+
+function addCheckbox() {
+  let labelText = packingItem.value;
+  let container = document.createElement("div");
+  container.style.display = "flex";
+  container.style.alignItems = "center";
+  container.style.justifyContent = "flex-start"; 
   
+  let checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.id = labelText.replace(/\s/g, "_");
+  
+  let label = document.createElement("label");
+  label.htmlFor = checkbox.id;
+  label.textContent = labelText;
+  label.style.marginLeft = "5px"; 
+
+  // Append elements to the container
+  container.appendChild(checkbox);
+  container.appendChild(label);
+  // Append the container to the checklist section
+  checklistSection.appendChild(container);
+
+  // Clear the input field
+  packingItem.value = "";
 }
-document.addEventListener()
+// Add an event listener to the add-item button
+addItemButton.addEventListener("click", addCheckbox);
+
+
 // Calculate the total budget and allocate it to categories
 function calculateBudgets(totalBudget) {
   const percentages = {
@@ -122,7 +113,7 @@ const expenses = {
   accommodation: 0,
   food: 0,
   activities: 0,
-  miscellaneous: 0,
+  miscellaneous: 0
 };
 
 // Function to record an expense
@@ -133,7 +124,7 @@ function recordExpense(category, amount) {
 
 // Function to update and display the remaining budget
 function updateRemainingBudgets() {
-  const totalBudget = 5000; // Replace with your actual budget
+  const totalBudget = 3000; // Replace with your actual budget
   const budgets = calculateBudgets(totalBudget);
 
   for (const category in budgets) {
@@ -143,7 +134,7 @@ function updateRemainingBudgets() {
 }
 
 // Example usage
-const initialBudget = 5000;
+const initialBudget = 3000;
 const initialBudgets = calculateBudgets(initialBudget);
 
 console.log("Initial Budgets:");
@@ -153,49 +144,3 @@ for (const category in initialBudgets) {
 
 recordExpense('transportation', 500);
 updateRemainingBudgets();
-
-// ... (rest of your code)
-
-// Error Handling
-function validateInput(input, errorMessage) {
-  if (!input.value.trim()) {
-    alert(errorMessage);
-    return false;
-  }
-  return true;
-}
-
-saveBudget.addEventListener("click", function() {
-  if (!validateInput(textBudget, "Please enter a valid budget.")) {
-    return;
-  }
-  // ... (rest of the saveBudget logic)
-});
-
-// Data Persistence (using Local Storage)
-function saveToLocalStorage(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-}
-
-function loadFromLocalStorage(key) {
-  const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : null;
-}
-
-// Load saved data on page load
-document.addEventListener('DOMContentLoaded', function () {
-  const savedBudget = loadFromLocalStorage('totalBudget');
-  if (savedBudget) {
-    totalBudget = savedBudget;
-    budgetDisplay.textContent = `$${totalBudget}`;
-  }
-  // ... (other initialization logic)
-});
-
-// Save data on budget change
-saveBudget.addEventListener("click", function() {
-  // ... (rest of the saveBudget logic)
-  saveToLocalStorage('totalBudget', totalBudget);
-});
-
- // ... (rest of your code)
