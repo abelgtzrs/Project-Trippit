@@ -17,7 +17,7 @@ let totalBudget;
 saveBudget.addEventListener("click", function() {
   totalBudget = parseFloat(textBudget.value);
   budgetDisplay.textContent = `$${totalBudget}`;
-} )
+});
 
 //Displays destination information
 document.addEventListener('DOMContentLoaded', function () {
@@ -36,6 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //Add and display hotels
+function displayHotels() {
+  $("#hotel-name").autocomplete({
+    source: ["Hotel A", "Hotel B", "Hotel C", "Hotel D", "Hotel ABCDE"]
+  });
+}
+
 const saveHotel = document.querySelector("#add-hotel");
 const hotelName = document.querySelector("#hotel-name");
 const hotelCheckIn = document.querySelector("#hotel-checkin");
@@ -95,7 +101,7 @@ const expenses = {
   accommodation: 0,
   food: 0,
   activities: 0,
-  miscellaneous: 0
+  miscellaneous: 0,
 };
 
 // Function to record an expense
@@ -106,7 +112,7 @@ function recordExpense(category, amount) {
 
 // Function to update and display the remaining budget
 function updateRemainingBudgets() {
-  const totalBudget = 3000; // Replace with your actual budget
+  const totalBudget = 5000; // Replace with your actual budget
   const budgets = calculateBudgets(totalBudget);
 
   for (const category in budgets) {
@@ -116,7 +122,7 @@ function updateRemainingBudgets() {
 }
 
 // Example usage
-const initialBudget = 3000;
+const initialBudget = 5000;
 const initialBudgets = calculateBudgets(initialBudget);
 
 console.log("Initial Budgets:");
@@ -126,3 +132,49 @@ for (const category in initialBudgets) {
 
 recordExpense('transportation', 500);
 updateRemainingBudgets();
+
+// ... (rest of your code)
+
+// Error Handling
+function validateInput(input, errorMessage) {
+  if (!input.value.trim()) {
+    alert(errorMessage);
+    return false;
+  }
+  return true;
+}
+
+saveBudget.addEventListener("click", function() {
+  if (!validateInput(textBudget, "Please enter a valid budget.")) {
+    return;
+  }
+  // ... (rest of the saveBudget logic)
+});
+
+// Data Persistence (using Local Storage)
+function saveToLocalStorage(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function loadFromLocalStorage(key) {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : null;
+}
+
+// Load saved data on page load
+document.addEventListener('DOMContentLoaded', function () {
+  const savedBudget = loadFromLocalStorage('totalBudget');
+  if (savedBudget) {
+    totalBudget = savedBudget;
+    budgetDisplay.textContent = `$${totalBudget}`;
+  }
+  // ... (other initialization logic)
+});
+
+// Save data on budget change
+saveBudget.addEventListener("click", function() {
+  // ... (rest of the saveBudget logic)
+  saveToLocalStorage('totalBudget', totalBudget);
+});
+
+ // ... (rest of your code)
