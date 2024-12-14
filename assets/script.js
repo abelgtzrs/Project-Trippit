@@ -1,92 +1,164 @@
-// javascript for Navbar
-document.addEventListener('DOMContentLoaded', function () {
+// Navbar Functionality ----------------------------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
   const navbarToggler = document.querySelector('.navbar-toggler');
   const navbarCollapse = document.querySelector('#navbarNavAltMarkup');
 
-  navbarToggler.addEventListener('click', function () {
-    navbarCollapse.classList.toggle('show');
-  });
+  if (navbarToggler && navbarCollapse) {
+    navbarToggler.addEventListener('click', () => {
+      navbarCollapse.classList.toggle('show');
+    });
+  }
 });
-//Save and display Budget
+
+// Budget Functionality ----------------------------------------------------------------------------------------
 const saveBudget = document.querySelector("#save-budget");
 const textBudget = document.querySelector("#total-budget");
-const budgetDisplay = document.querySelector("#display-budget")
+const budgetDisplay = document.querySelector("#display-budget");
 
-let totalBudget;
+let totalBudget = 0;
 
-saveBudget.addEventListener("click", function() {
-  totalBudget = parseFloat(textBudget.value);
-  budgetDisplay.textContent = `$${totalBudget}`;
-} )
-
-//Displays destination information
-document.addEventListener('DOMContentLoaded', function () {
-  const destination = document.querySelector("#destination");
-  const destinationStartDate = document.querySelector("#destination-start-date");
-  const destinationEndDate = document.querySelector("#destination-end-date");
-  const addDestinationButton = document.querySelector("#add-destination");
-
-  function updateDestinationInfo() {
-      document.querySelector("#destination-display").textContent = destination.value;
-      document.querySelector("#startdate-display").textContent = destinationStartDate.value;
-      document.querySelector("#enddate-display").textContent = destinationEndDate.value;
-  }
-
-  addDestinationButton.addEventListener("click", updateDestinationInfo);
+saveBudget?.addEventListener("click", () => {
+  totalBudget = parseFloat(textBudget?.value) || 0;
+  budgetDisplay.textContent = `$${totalBudget.toFixed(2)}`;
 });
 
-//Add and display hotels
+// Destination Functionality -----------------------------------------------------------------------------------
+const addDestination = document.querySelector("#add-destination");
+
+const destinationInput = document.querySelector("#destination");
+const destinationStartDate = document.querySelector("#destination-start-date");
+const destinationEndDate = document.querySelector("#destination-end-date");
+
+const destinationDisplay = document.querySelector("#destination-display");
+const startDateDisplay = document.querySelector("#startdate-display");
+const endDateDisplay = document.querySelector("#enddate-display");
+
+function updateDestination() {
+  destinationDisplay.textContent = destinationInput?.value || "N/A";
+  startDateDisplay.textContent = destinationStartDate?.value || "N/A";
+  endDateDisplay.textContent = destinationEndDate?.value || "N/A";
+}
+
+addDestination?.addEventListener("click", (event) => {
+  event.preventDefault();
+  updateDestination();
+});
+
+// Flight Functionality ----------------------------------------------------------------------------------------
+const addFlight = document.querySelector("#add-flight");
+
+const airlineInput = document.querySelector("#airline");
+const flightNumberInput = document.querySelector("#flight-number");
+const departingDateInput = document.querySelector("#departing-flight");
+const returningDateInput = document.querySelector("#returning-flight");
+const flightCostInput = document.querySelector("#flight-cost");
+const flightTravelerInput = document.querySelector("#traveler-number");
+
+const airlineDisplay = document.querySelector("#airline-display");
+const flightNumberDisplay = document.querySelector("#flightnumber-display");
+const departingDateDisplay = document.querySelector("#departingflight-display");
+const returningDateDisplay = document.querySelector("#returningflight-display");
+const flightCostDisplay = document.querySelector("#flightcost-display");
+const flightTravelerDisplay = document.querySelector("#traveler-display");
+
+function updateFlight() {
+  airlineDisplay.textContent = airlineInput?.value || "N/A";
+  flightNumberDisplay.textContent = flightNumberInput?.value || "N/A";
+  departingDateDisplay.textContent = departingDateInput?.value || "N/A";
+  returningDateDisplay.textContent = returningDateInput?.value || "N/A";
+  flightCostDisplay.textContent = `$${parseFloat(flightCostInput?.value || 0).toFixed(2)}`;
+  flightTravelerDisplay.textContent = flightTravelerInput?.value || "N/A";
+}
+
+addFlight?.addEventListener("click", (event) => {
+  event.preventDefault();
+  updateFlight();
+});
+
+// Hotel Functionality -----------------------------------------------------------------------------------------
 const saveHotel = document.querySelector("#add-hotel");
-const hotelName = document.querySelector("#hotel-name");
-const hotelCheckIn = document.querySelector("#hotel-checkin");
-const hotelCheckOut = document.querySelector("#hotel-checkout");
-const hotelCost = document.querySelector("#hotel-cost");
+
+const hotelNameInput = document.querySelector("#hotel-name");
+const hotelCheckInInput = document.querySelector("#hotel-checkin");
+const hotelCheckOutInput = document.querySelector("#hotel-checkout");
+const hotelCostInput = document.querySelector("#hotel-cost");
+
 const hotelNameDisplay = document.querySelector("#hotelname-display");
 const hotelCheckInDisplay = document.querySelector("#hotelcheckin-display");
 const hotelCheckOutDisplay = document.querySelector("#hotelcheckout-display");
-const hotelCostDisplay = document.querySelector("#hotelcost-display")
+const hotelCostDisplay = document.querySelector("#hotelcost-display");
 
+function updateHotel() {
+  hotelNameDisplay.textContent = hotelNameInput?.value || "N/A";
+  hotelCheckInDisplay.textContent = hotelCheckInInput?.value || "N/A";
+  hotelCheckOutDisplay.textContent = hotelCheckOutInput?.value || "N/A";
+  hotelCostDisplay.textContent = `$${parseFloat(hotelCostInput?.value || 0).toFixed(2)}`;
+}
 
-//Display Hotel Information
-saveHotel.addEventListener("click", function() {
-  hotelNameDisplay.textContent = hotelName.value;
-  hotelCheckInDisplay.textContent = hotelCheckIn.value;
-  hotelCheckOutDisplay.textContent = hotelCheckOut.value;
-  
-})
+saveHotel?.addEventListener("click", (event) => {
+  event.preventDefault();
+  updateHotel();
+});
 
-// Displays packing checklist
-const packingItem = document.querySelector("#new-item");
+// Activity Functionality --------------------------------------------------------------------------------------
+const addActivityButton = document.querySelector("#add-activity");
+
+const activityNameInput = document.querySelector("#activity-name");
+const activityDateInput = document.querySelector("#activity-date");
+const activityTimeInput = document.querySelector("#activity-time");
+const activityCostInput = document.querySelector("#activity-cost");
+
+const activityNameDisplay = document.querySelector("#activityname-display");
+const activityDateDisplay = document.querySelector("#activitydate-display");
+const activityTimeDisplay = document.querySelector("#activitytime-display");
+const activityCostDisplay = document.querySelector("#activitycost-display");
+
+function updateActivity() {
+  activityNameDisplay.textContent = activityNameInput?.value || "N/A";
+  activityDateDisplay.textContent = activityDateInput?.value || "N/A";
+  activityTimeDisplay.textContent = activityTimeInput?.value || "N/A";
+  activityCostDisplay.textContent = `$${parseFloat(activityCostInput?.value || 0).toFixed(2)}`;
+}
+
+addActivityButton?.addEventListener("click", (event) => {
+  event.preventDefault();
+  updateActivity();
+});
+
+// Packing Checklist -------------------------------------------------------------------------------------------
+const packingItemInput = document.querySelector("#new-item");
 const addItemButton = document.querySelector("#add-item");
 const checklistSection = document.querySelector("#checklist-section");
 
 function addCheckbox() {
-  let labelText = packingItem.value;
-  let container = document.createElement("div");
+  const labelText = packingItemInput?.value.trim();
+  if (!labelText) {
+    alert("Please enter an item.");
+    return;
+  }
+
+  const container = document.createElement("div");
   container.style.display = "flex";
   container.style.alignItems = "center";
-  container.style.justifyContent = "flex-start"; 
-  
-  let checkbox = document.createElement("input");
+  container.style.justifyContent = "flex-start";
+
+  const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.id = labelText.replace(/\s/g, "_");
-  
-  let label = document.createElement("label");
+
+  const label = document.createElement("label");
   label.htmlFor = checkbox.id;
   label.textContent = labelText;
-  label.style.marginLeft = "5px"; 
+  label.style.marginLeft = "5px";
 
-  // Append elements to the container
   container.appendChild(checkbox);
   container.appendChild(label);
-  // Append the container to the checklist section
-  checklistSection.appendChild(container);
+  checklistSection?.appendChild(container);
 
-  // Clear the input field
-  packingItem.value = "";
+  packingItemInput.value = "";
 }
-// Add an event listener to the add-item button
-addItemButton.addEventListener("click", addCheckbox);
+
+addItemButton?.addEventListener("click", addCheckbox);
 
 
 // Calculate the total budget and allocate it to categories

@@ -9,27 +9,27 @@
   <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
   </head>
   <body>
-    <header>
+  <header>
       <h1>Trippit</h1>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
           <a class="navbar-brand" href="#">Travel Made Extraordinary</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <ul>
                 <li><a class="nav-link active" aria-current="page" href="https://travel.usnews.com/rankings/worlds-best-vacations/">Destination Ideas</a></li>
                 <li><a class="nav-link" href="https://www.expedia.com/">Expedia</a></li>
                 <li><a class="nav-link" href="https://www.hotels.com/">Hotels</a></li>
                 <li><a class="nav-link" href="https://www.yelp.com/">Yelp</a></li>
-              </ul>
-            </div>
+            </ul>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
   <main>
     <div id="columns-container"> <!-- Whole Main Page Container --->
@@ -39,7 +39,7 @@
       <!-- Budget Input -->
       <div id="budget-input">
         <h2>Set Budget</h2>
-        <input type="text" id="total-budget" name="Total-Budget">
+        <input type="number" id="total-budget" name="Total-Budget">
         <button id="save-budget">Save Budget</button>
       </div>
       <!-- Destination Input --->
@@ -58,14 +58,14 @@
         <h2>Add Flight</h2>
         <label for="airline">Airline:</label>
         <input type="text" id="airline" name="airline" placeholder="Enter airline" required>
-        <label for="flight number">Flight Number</label>
-        <input type="text" id="Flight Number", name="Flight Number" placeholder="Enter Flight Number" required>
+        <label for="flight-number">Flight Number</label>
+        <input type="text" id="flight-number", name="flight-number" placeholder="Enter Flight Number" required>
         <label for="departing-flight">Departing flight</label>
         <input type="date" id="departing-flight" name="departing-flight">
         <label for="returning-flight">Returning flight</label>
         <input type="date" id="returning-flight" name="returning-flight">
-        <label for="flight-price">Flight Cost</label>
-        <input type="text" id="flight-price" name="flight-price">
+        <label for="flight-cost">Flight Cost</label>
+        <input type="text" id="flight-cost" name="flight-cost">
         <label for="traveler-number">Travelers</label>
         <input type="number" id="traveler-number" name="traveler-number">
         <button id="add-flight">Add Flight</button>
@@ -124,6 +124,7 @@
           <li><p><strong>Departing Flight</strong> <span id="departingflight-display">*****</span></p></li>
           <li><p><strong>Returning Flight</strong> <span id="returningflight-display">*****</span></p></li>
           <li><p><strong>Cost</strong> <span id="flightcost-display">*****</span></p></li>
+          <li><p><strong>Travelers</strong> <span id="traveler-display"></span></p></li>
         </ul>
       </div>
       <!-- Hotel Summary --->
@@ -133,6 +134,7 @@
           <li><p><strong>Hotel Name</strong> <span id="hotelname-display">*****</span></p></li>
           <li><p><strong>Hotel Check In</strong> <span id="hotelcheckin-display">*****</span></p></li>
           <li><p><strong>Hotel Checkout</strong> <span id="hotelcheckout-display">*****</span></p></li>
+          <li><p><strong>Hotel Cost per night</strong> <span id="hotelcost-display">****</span></p></li>
         </ul>
       </div>
       <!-- Activity Summary --->
