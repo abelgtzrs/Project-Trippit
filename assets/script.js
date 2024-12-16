@@ -1,12 +1,3 @@
-// javascript for Navbar----------------------------------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', function () {
-  const navbarToggler = document.querySelector('.navbar-toggler');
-  const navbarCollapse = document.querySelector('#navbarNavAltMarkup');
-
-  navbarToggler.addEventListener('click', function () {
-    navbarCollapse.classList.toggle('show');
-  });
-});
 //Display Budget information------------------------------------------------------------------------------------
 const saveBudget = document.querySelector("#save-budget");
 const budgetInput = document.querySelector("#total-budget");
@@ -96,7 +87,7 @@ const airline = document.querySelector("#airline");
 const flightNumber = document.querySelector("#flight-number");
 const departingDate = document.querySelector("#departing-flight");
 const returningDate = document.querySelector("#returning-flight");
-const flightCost = document.querySelector("#flight-cost");
+const flightCostInput = document.querySelector("#flight-cost");
 const flightTraveler = document.querySelector("#traveler-number");
 
 const airlineDisplay = document.querySelector("#airline-display");
@@ -108,18 +99,20 @@ const flightTravelerDisplay = document.querySelector("#traveler-display");
 
 function updateFlight() {
   const flightCost = parseFloat(flightCostInput?.value) || 0;
-  const travelers = parseInt(flightTravelerInput?.value) || 1;
+  const travelers = parseInt(flightTraveler?.value) || 1;
   const totalFlightCost = flightCost * travelers;
 
-  airlineDisplay.textContent = airlineInput?.value || "N/A";
-  flightNumberDisplay.textContent = flightNumberInput?.value || "N/A";
-  departingDateDisplay.textContent = departingDateInput?.value || "N/A";
-  returningDateDisplay.textContent = returningDateInput?.value || "N/A";
+  airlineDisplay.textContent = airline?.value || "N/A";
+  flightNumberDisplay.textContent = flightNumber?.value || "N/A";
+  departingDateDisplay.textContent = departingDate?.value || "N/A";
+  returningDateDisplay.textContent = returningDate?.value || "N/A";
   flightCostDisplay.textContent = `$${flightCost.toFixed(2)}`;
-  flightTravelerDisplay.textContent = flightTravelerInput?.value || "N/A";
+  flightTravelerDisplay.textContent = flightTraveler?.value || "N/A";
 
   flightCostDisplay.textContent = `$${totalFlightCost.toFixed(2)}`;
   flightTravelerDisplay.textContent = travelers || "N/A";
+
+  console.log(totalFlightCost);
 
   recordExpense("transportation", totalFlightCost);
   displayCategoryBudgets();
@@ -136,7 +129,7 @@ const saveHotel = document.querySelector("#add-hotel");
 const hotelName = document.querySelector("#hotel-name");
 const hotelCheckIn = document.querySelector("#hotel-checkin");
 const hotelCheckOut = document.querySelector("#hotel-checkout");
-const hotelCost = document.querySelector("#hotel-cost");
+const hotelCostInput = document.querySelector("#hotel-cost");
 
 const hotelNameDisplay = document.querySelector("#hotelname-display");
 const hotelCheckInDisplay = document.querySelector("#hotelcheckin-display");
@@ -145,9 +138,9 @@ const hotelCostDisplay = document.querySelector("#hotelcost-display");
 
 function updateHotel() {
   const hotelCost = parseFloat(hotelCostInput?.value) || 0;
-  hotelNameDisplay.textContent = hotelNameInput?.value || "N/A";
-  hotelCheckInDisplay.textContent = hotelCheckInInput?.value || "N/A";
-  hotelCheckOutDisplay.textContent = hotelCheckOutInput?.value || "N/A";
+  hotelNameDisplay.textContent = hotelName?.value || "N/A";
+  hotelCheckInDisplay.textContent = hotelCheckIn?.value || "N/A";
+  hotelCheckOutDisplay.textContent = hotelCheckOut?.value || "N/A";
   hotelCostDisplay.textContent = `$${hotelCost.toFixed(2)}`;
 
   recordExpense("accommodation", hotelCost);
