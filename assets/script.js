@@ -9,30 +9,83 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 //Display Budget information------------------------------------------------------------------------------------
 const saveBudget = document.querySelector("#save-budget");
-const textBudget = document.querySelector("#total-budget");
-const budgetDisplay = document.querySelector("#display-budget")
+const budgetInput = document.querySelector("#total-budget");
+const budgetDisplay = document.querySelector("#display-budget");
+const remainingBudgetDisplay = document.querySelector("#remaining-budget");
+const categoryBudgetDisplay = document.querySelector("#category-budget-display");
+const budgetChart = document.querySelector("#budget-chart");
 
 let totalBudget;
+let remainingBudget;
+let chartInstance = null;
 
-saveBudget.addEventListener("click", function() {
-  totalBudget = parseFloat(textBudget.value);
-  budgetDisplay.textContent = `$${totalBudget}`;
-} )
+let currentCategory = "destination"; // Default category to display
 
-//Displays destination information-----------------------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', function () {
-  const destination = document.querySelector("#destination");
-  const destinationStartDate = document.querySelector("#destination-start-date");
-  const destinationEndDate = document.querySelector("#destination-end-date");
-  const addDestinationButton = document.querySelector("#add-destination");
+const sections = {
+  destination: document.querySelector("#destination-section"),
+  flight: document.querySelector("#flight-section"),
+  hotel: document.querySelector("#hotel-section"),
+  food: document.querySelector("#food-section"),
+  activity: document.querySelector("#activity-section"),
+};
 
-  function updateDestinationInfo() {
-      document.querySelector("#destination-display").textContent = destination.value;
-      document.querySelector("#startdate-display").textContent = destinationStartDate.value;
-      document.querySelector("#enddate-display").textContent = destinationEndDate.value;
+const categoryButtons = document.querySelectorAll(".category-button");
+
+// Initialize category buttons
+categoryButtons.forEach(button => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    switchCategory(button.dataset.category);
+  });
+});
+
+function switchCategory(category) {
+  // Hide all sections
+  for (const key in sections) {
+    sections[key]?.classList.add("hidden");
   }
 
-  addDestinationButton.addEventListener("click", updateDestinationInfo);
+  // Show the selected section
+  sections[category]?.classList.remove("hidden");
+  currentCategory = category;
+}
+
+switchCategory(currentCategory); // Initialize the first category display
+
+saveBudget?.addEventListener("click", () => {
+  totalBudget = parseFloat(budgetInput?.value) || 0;
+  remainingBudget = totalBudget; // Initialize remaining budget
+  budgetDisplay.textContent = `$${totalBudget.toFixed(2)}`;
+  remainingBudgetDisplay.textContent = `$${remainingBudget.toFixed(2)}`;
+
+  // Reset all expenses
+  for (const category in expenses) {
+    expenses[category] = 0;
+  }
+
+  displayCategoryBudgets(); // Update chart and display
+});
+
+// Destination Functionality -----------------------------------------------------------------------------------
+const addDestination = document.querySelector("#add-destination");
+
+const destinationInput = document.querySelector("#destination");
+const destinationStartDate = document.querySelector("#destination-start-date");
+const destinationEndDate = document.querySelector("#destination-end-date");
+
+const destinationDisplay = document.querySelector("#destination-display");
+const startDateDisplay = document.querySelector("#startdate-display");
+const endDateDisplay = document.querySelector("#enddate-display");
+
+function updateDestination() {
+  destinationDisplay.textContent = destinationInput?.value || "N/A";
+  startDateDisplay.textContent = destinationStartDate?.value || "N/A";
+  endDateDisplay.textContent = destinationEndDate?.value || "N/A";
+}
+
+addDestination?.addEventListener("click", (event) => {
+  event.preventDefault();
+  updateDestination();
 });
 
 //Display Flight information------------------------------------------------------------------------------------
@@ -54,12 +107,22 @@ const flightCostDisplay = document.querySelector("#flightcost-display");
 const flightTravelerDisplay = document.querySelector("#traveler-display");
 
 function updateFlight() {
-  airlineDisplay.textContent = airline.value || "N/A";
-  flightNumberDisplay.textContent = flightNumber.value || "N/A";
-  departingDateDisplay.textContent = departingDate.value || "N/A";
-  returningDateDisplay.textContent = returningDate.value || "N/A";
-  flightCostDisplay.textContent = flightCost.value || "N/A";
-  flightTravelerDisplay.textContent = flightTraveler.value || "N/A";
+  const flightCost = parseFloat(flightCostInput?.value) || 0;
+  const travelers = parseInt(flightTravelerInput?.value) || 1;
+  const totalFlightCost = flightCost * travelers;
+
+  airlineDisplay.textContent = airlineInput?.value || "N/A";
+  flightNumberDisplay.textContent = flightNumberInput?.value || "N/A";
+  departingDateDisplay.textContent = departingDateInput?.value || "N/A";
+  returningDateDisplay.textContent = returningDateInput?.value || "N/A";
+  flightCostDisplay.textContent = `$${flightCost.toFixed(2)}`;
+  flightTravelerDisplay.textContent = flightTravelerInput?.value || "N/A";
+
+  flightCostDisplay.textContent = `$${totalFlightCost.toFixed(2)}`;
+  flightTravelerDisplay.textContent = travelers || "N/A";
+
+  recordExpense("transportation", totalFlightCost);
+  displayCategoryBudgets();
 }
 
 addFlight.addEventListener("click", (event) => {
@@ -81,10 +144,14 @@ const hotelCheckOutDisplay = document.querySelector("#hotelcheckout-display");
 const hotelCostDisplay = document.querySelector("#hotelcost-display");
 
 function updateHotel() {
-  hotelNameDisplay.textContent = hotelName.value;
-  hotelCheckInDisplay.textContent = hotelCheckIn.value;
-  hotelCheckOutDisplay.textContent = hotelCheckOut.value;
-  hotelCostDisplay.textContent = `$${hotelCost.value.toFixed(2)}`;
+  const hotelCost = parseFloat(hotelCostInput?.value) || 0;
+  hotelNameDisplay.textContent = hotelNameInput?.value || "N/A";
+  hotelCheckInDisplay.textContent = hotelCheckInInput?.value || "N/A";
+  hotelCheckOutDisplay.textContent = hotelCheckOutInput?.value || "N/A";
+  hotelCostDisplay.textContent = `$${hotelCost.toFixed(2)}`;
+
+  recordExpense("accommodation", hotelCost);
+  displayCategoryBudgets();
 }
 
 saveHotel.addEventListener("click", updateHotel)
@@ -103,25 +170,166 @@ const activityTimeDisplay = document.querySelector("#activitytime-display");
 const activityCostDisplay = document.querySelector("#activitycost-display");
 
 function updateActivity() {
-  // Get and validate input values
-  const activityName = activityNameInput
-  const activityDate = activityDateInput
-  const activityTime = activityTimeInput
-  const activityCost = parseFloat(activityCostInput.value) || 0;
-
-  // Update the summary display
-  activityNameDisplay.textContent = activityName.value || "N/A";;
-  activityDateDisplay.textContent = activityDate.value || "N/A";;
-  activityTimeDisplay.textContent = activityTime.value || "N/A";;
+  const activityCost = parseFloat(activityCostInput?.value) || 0;
+  activityNameDisplay.textContent = activityNameInput?.value || "N/A";
+  activityDateDisplay.textContent = activityDateInput?.value || "N/A";
+  activityTimeDisplay.textContent = activityTimeInput?.value || "N/A";
   activityCostDisplay.textContent = `$${activityCost.toFixed(2)}`;
 
-// Add event listener to the "Add Activity" button
-addActivityButton.addEventListener("click", (event) => {
-  event.preventDefault(); // Prevent form submission or page refresh
+  recordExpense("activities", activityCost);
+  displayCategoryBudgets();
+}
+
+addActivityButton?.addEventListener("click", (event) => {
+  event.preventDefault();
   updateActivity();
 });
 
-// Calculate the total budget and allocate it to categories------------------------------------------------------
+// Food Functionality ------------------------------------------------------------------------------------------
+const addFoodButton = document.querySelector("#add-food");
+
+const foodItemInput = document.querySelector("#food-item");
+const foodDateInput = document.querySelector("#food-date");
+const foodCostInput = document.querySelector("#food-cost");
+
+const foodItemDisplay = document.querySelector("#fooditem-display");
+const foodDateDisplay = document.querySelector("#fooddate-display");
+const foodCostDisplay = document.querySelector("#foodcost-display");
+
+function updateFood() {
+  const foodCost = parseFloat(foodCostInput?.value) || 0;
+  foodItemDisplay.textContent = foodItemInput?.value || "N/A";
+  foodDateDisplay.textContent = foodDateInput?.value || "N/A";
+  foodCostDisplay.textContent = `$${foodCost.toFixed(2)}`;
+
+  recordExpense("food", foodCost);
+  displayCategoryBudgets();
+}
+
+addFoodButton?.addEventListener("click", (event) => {
+  event.preventDefault();
+  updateFood();
+});
+
+// Packing Checklist -------------------------------------------------------------------------------------------
+const packingItemInput = document.querySelector("#new-item");
+const addItemButton = document.querySelector("#add-item");
+const checklistSection = document.querySelector("#checklist-section");
+
+function addCheckbox() {
+  const labelText = packingItemInput?.value.trim();
+  if (!labelText) {
+    alert("Please enter an item.");
+    return;
+  }
+
+  const container = document.createElement("div");
+  container.style.display = "flex";
+  container.style.alignItems = "right";
+  container.style.justifyContent = "flex-start";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.id = labelText.replace(/\s/g, "_");
+
+  const label = document.createElement("label");
+  label.htmlFor = checkbox.id;
+  label.textContent = labelText;
+  label.style.marginLeft = "5px";
+
+  container.appendChild(checkbox);
+  container.appendChild(label);
+  checklistSection?.appendChild(container);
+
+  packingItemInput.value = "";
+}
+
+addItemButton?.addEventListener("click", addCheckbox);
+
+//Remaining Budget Function---------------------------------------------------------------------------------
+function updateRemainingBudget(expense){
+  remainingBudget -= expense;
+  if (remainingBudget < 0) {
+    alert("You have exceeded your budget!");
+  }
+  remainingBudgetDisplay.textContent = `$${remainingBudget.toFixed(2)}`;
+  };
+
+//Display Category Expensess
+function displayCategoryBudgets() {
+  const totalExpenses = Object.values(expenses).reduce((sum, expense) => sum + expense, 0);
+  const openBudget = totalBudget - totalExpenses;
+  
+
+  // Clear existing category budgets
+  categoryBudgetDisplay.innerHTML = "";
+
+  // Prepare data for the chart
+  const chartLabels = [];
+  const chartData = [];
+
+  for (const [category, amount] of Object.entries(expenses)) {
+    const percentage = totalExpenses > 0 ? (amount / totalBudget) * 100 : 0;
+
+    // Update category display
+    const categoryRow = document.createElement("div");
+    categoryRow.className = "category-row";
+    categoryRow.innerHTML = `<p><strong>${category.charAt(0).toUpperCase() + category.slice(1)}:</strong> Spent: $${amount.toFixed(2)} (${percentage.toFixed(2)}%)</p>`;
+    categoryBudgetDisplay.appendChild(categoryRow);
+
+    // Update chart data
+    chartLabels.push(category);
+    chartData.push(percentage);
+  }
+
+  if (openBudget > 0) {
+    chartLabels.push("Open Budget");
+    chartData.push((openBudget / totalBudget) * 100);
+
+    // Display open budget in the category display
+    const openBudgetRow = document.createElement("div");
+    openBudgetRow.className = "category-row";
+    openBudgetRow.innerHTML = `
+      <p><strong>Open Budget:</strong> $${openBudget.toFixed(2)} (${((openBudget / totalBudget) * 100).toFixed(2)}%)</p>
+    `;
+    categoryBudgetDisplay.appendChild(openBudgetRow);
+  }
+
+  renderBudgetChart(chartLabels, chartData);
+}
+
+// Render Budget Chart ------------------------------------------------------------------------------------------
+function renderBudgetChart(labels, data) {
+  if (budgetChart) {
+    const ctx = budgetChart.getContext("2d");
+    if (chartInstance) {
+      chartInstance.destroy();
+    }
+
+    chartInstance = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels,
+        datasets: [
+          {
+            data,
+            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40", "#A8B820"],
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+        },
+      },
+    });
+  }
+}
+
+// Calculate the total budget and allocate it to categories-----------------------------------------------
 function calculateBudgets(totalBudget) {
   const percentages = {
     transportation: 0.3,
@@ -140,18 +348,22 @@ function calculateBudgets(totalBudget) {
 }
 
 // Initialize expense tracking
-const expenses = {
+let expenses = {
   transportation: 0,
-  accommodation: 0,
   food: 0,
-  activities: 0,
-  miscellaneous: 0
+  accommodation: 0,
+  entertainment: 0,
+  activities: 0
 };
 
 // Function to record an expense
 function recordExpense(category, amount) {
+  if (!expenses.hasOwnProperty(category)) {
+    console.error(`Category ${category} does not exist.`);
+    return;
+  }
   expenses[category] += amount;
-  updateRemainingBudgets();
+  updateRemainingBudget(amount);
 }
 
 // Function to update and display the remaining budget
@@ -175,4 +387,4 @@ for (const category in initialBudgets) {
 }
 
 recordExpense('transportation', 500);
-updateRemainingBudgets()}
+updateRemainingBudgets();
