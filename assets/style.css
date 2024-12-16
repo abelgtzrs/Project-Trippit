@@ -1,4 +1,3 @@
-/* General Page Layout */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -9,11 +8,10 @@ body {
   background-color: #f4f4f4;
 }
 
-/* Navbar Styling */
 .navbar {
   display: flex;
-  justify-content: space-between; /* Space between the left and right parts */
-  align-items: center; /* Vertically align items */
+  justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
   background-color: #f9f9f9;
   border-bottom: 1px solid #ddd;
@@ -26,8 +24,8 @@ body {
 }
 
 .navbar-right {
-  display: flex; /* Arrange links in a row */
-  gap: 15px; /* Spacing between links */
+  display: flex;
+  gap: 15px;
 }
 
 .navbar-right a {
@@ -48,24 +46,24 @@ body {
 #columns-container {
   display: flex;
   flex-direction: row;
-  align-items: stretch; /* Ensures all columns have the same height */
-  justify-content: center; /* Centers the columns closer to the middle */
+  align-items: stretch;
+  justify-content: center;
   gap: 10px;
   padding: 20px;
-  width: 80%; /* Reduce container width for better centering */
-  margin: auto; /* Centers the entire container */
+  width: 80%;
+  margin: auto;
 }
 
 /* Individual Columns */
 .column {
-  flex: 0 0 25%; /* Each column takes exactly 25% width */
+  flex: 0 0 25%;
   padding: 20px;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column; /* Allows content to stack vertically */
+  flex-direction: column;
 }
 
 .column h2 {
@@ -76,9 +74,9 @@ body {
 
 /* Budget Textbox */
 #total-budget {
-  width: 100%; /* Takes full width of the container */
-  padding: 12px; /* Larger padding for a larger textbox appearance */
-  font-size: 24px; /* Larger text size */
+  width: 100%;
+  padding: 12px;
+  font-size: 24px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -109,11 +107,11 @@ body {
 
 /* Sections within Columns */
 section {
-  display: none; /* All sections are hidden by default */
+  display: none;
 }
 
 section:not(.hidden) {
-  display: block; /* Only active section is shown */
+  display: block;
 }
 
 /* Ensures Inputs and Other Elements Align Nicely */
