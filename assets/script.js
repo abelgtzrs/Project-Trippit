@@ -77,6 +77,20 @@ function updateDestination() {
 addDestination?.addEventListener("click", (event) => {
   event.preventDefault();
   updateDestination();
+
+  const destination = destinationInput.value;
+  const startDate = destinationStartDate.value;
+  const endDate = destinationEndDate.value;
+
+  if (destination && startDate && endDate) {
+    localStorage.setItem('destination', destination);
+    localStorage.setItem('destinationStartDate', startDate);
+    localStorage.setItem('destinationEndDate', endDate);
+
+    destinationDisplay.textContent = destination;
+    startDateDisplay.textContent = startDate;
+    endDateDisplay.textContent = endDate;
+  }
 });
 
 //Display Flight information------------------------------------------------------------------------------------
@@ -121,6 +135,32 @@ function updateFlight() {
 addFlight.addEventListener("click", (event) => {
   event.preventDefault();
   updateFlight();
+  addFlight?.addEventListener("click", (event) => {
+    event.preventDefault();
+    const airline = airlineInput.value;
+    const flightNumber = flightNumberInput.value;
+    const departingFlight = departingDateInput.value;
+    const returningFlight = returningDateInput.value;
+    const flightCost = flightCostInput.value;
+    const travelerNumber = flightTravelerInput.value;
+  
+    if (airline && flightNumber && departingFlight && returningFlight && flightCost && travelerNumber) {
+      localStorage.setItem('airline', airline);
+      localStorage.setItem('flightNumber', flightNumber);
+      localStorage.setItem('departingFlight', departingFlight);
+      localStorage.setItem('returningFlight', returningFlight);
+      localStorage.setItem('flightCost', flightCost);
+      localStorage.setItem('travelerNumber', travelerNumber);
+  
+      airlineDisplay.textContent = airline;
+      flightNumberDisplay.textContent = flightNumber;
+      departingDateDisplay.textContent = departingFlight;
+      returningDateDisplay.textContent = returningFlight;
+      flightCostDisplay.textContent = `$${flightCost}`;
+      flightTravelerDisplay.textContent = travelerNumber;
+    }
+  });
+
 });
 
 //Display Hotel information--------------------------------------------------------------------------------------
@@ -147,7 +187,25 @@ function updateHotel() {
   displayCategoryBudgets();
 }
 
-saveHotel.addEventListener("click", updateHotel)
+saveHotel?.addEventListener("click", (event) => {
+  event.preventDefault();
+  const hotelName = hotelNameInput.value;
+  const hotelCheckin = hotelCheckInInput.value;
+  const hotelCheckout = hotelCheckOutInput.value;
+  const hotelCost = hotelCostInput.value;
+
+  if (hotelName && hotelCheckin && hotelCheckout && hotelCost) {
+    localStorage.setItem('hotelName', hotelName);
+    localStorage.setItem('hotelCheckin', hotelCheckin);
+    localStorage.setItem('hotelCheckout', hotelCheckout);
+    localStorage.setItem('hotelCost', hotelCost);
+
+    hotelNameDisplay.textContent = hotelName;
+    hotelCheckInDisplay.textContent = hotelCheckin;
+    hotelCheckOutDisplay.textContent = hotelCheckout;
+    hotelCostDisplay.textContent = `$${hotelCost}`;
+  }
+});
 
 //Display Activity information------------------------------------------------------------------------------------
 const addActivityButton = document.querySelector("#add-activity");
@@ -176,6 +234,23 @@ function updateActivity() {
 addActivityButton?.addEventListener("click", (event) => {
   event.preventDefault();
   updateActivity();
+
+  const activityName = activityNameInput.value;
+  const activityDate = activityDateInput.value;
+  const activityTime = activityTimeInput.value;
+  const activityCost = activityCostInput.value;
+
+  if (activityName && activityDate && activityTime && activityCost) {
+    localStorage.setItem('activityName', activityName);
+    localStorage.setItem('activityDate', activityDate);
+    localStorage.setItem('activityTime', activityTime);
+    localStorage.setItem('activityCost', activityCost);
+
+    activityNameDisplay.textContent = activityName;
+    activityDateDisplay.textContent = activityDate;
+    activityTimeDisplay.textContent = activityTime;
+    activityCostDisplay.textContent = `$${activityCost}`;
+  }
 });
 
 // Food Functionality ------------------------------------------------------------------------------------------
@@ -233,6 +308,12 @@ function addCheckbox() {
   container.appendChild(checkbox);
   container.appendChild(label);
   checklistSection?.appendChild(container);
+
+  // Save checklist item to local storage
+  let checklistItems = JSON.parse(localStorage.getItem('checklist')) || [];
+  checklistItems.push(labelText);
+  localStorage.setItem('checklist', JSON.stringify(checklistItems));
+
 
   packingItemInput.value = "";
 }
@@ -381,3 +462,90 @@ for (const category in initialBudgets) {
 
 recordExpense('transportation', 500);
 updateRemainingBudgets();
+
+function recallLocalStorage() {
+  // Recall budget
+  const savedBudget = localStorage.getItem('totalBudget');
+  if (savedBudget) {
+    document.getElementById('total-budget').value = savedBudget;
+    document.getElementById('display-budget').innerText = `$${savedBudget}`;
+  }
+
+  // Recall destinations
+  const savedDestination = localStorage.getItem('destination');
+  const savedStartDate = localStorage.getItem('destinationStartDate');
+  const savedEndDate = localStorage.getItem('destinationEndDate');
+  if (savedDestination && savedStartDate && savedEndDate) {
+    document.getElementById('destination').value = savedDestination;
+    document.getElementById('destination-start-date').value = savedStartDate;
+    document.getElementById('destination-end-date').value = savedEndDate;
+    document.getElementById('destination-display').innerText = savedDestination;
+    document.getElementById('startdate-display').innerText = savedStartDate;
+    document.getElementById('enddate-display').innerText = savedEndDate;
+  }
+
+  // Recall flights
+  const savedAirline = localStorage.getItem('airline');
+  const savedFlightNumber = localStorage.getItem('flightNumber');
+  const savedDepartingFlight = localStorage.getItem('departingFlight');
+  const savedReturningFlight = localStorage.getItem('returningFlight');
+  const savedFlightCost = localStorage.getItem('flightCost');
+  const savedTravelerNumber = localStorage.getItem('travelerNumber');
+  if (savedAirline && savedFlightNumber && savedDepartingFlight && savedReturningFlight && savedFlightCost && savedTravelerNumber) {
+    document.getElementById('airline').value = savedAirline;
+    document.getElementById('flight-number').value = savedFlightNumber;
+    document.getElementById('departing-flight').value = savedDepartingFlight;
+    document.getElementById('returning-flight').value = savedReturningFlight;
+    document.getElementById('flight-cost').value = savedFlightCost;
+    document.getElementById('traveler-number').value = savedTravelerNumber;
+    document.getElementById('airline-display').innerText = savedAirline;
+    document.getElementById('flightnumber-display').innerText = savedFlightNumber;
+    document.getElementById('departingflight-display').innerText = savedDepartingFlight;
+    document.getElementById('returningflight-display').innerText = savedReturningFlight;
+    document.getElementById('flightcost-display').innerText = `$${savedFlightCost}`;
+    document.getElementById('traveler-display').innerText = savedTravelerNumber;
+  }
+
+  // Recall hotels
+  const savedHotelName = localStorage.getItem('hotelName');
+  const savedHotelCheckin = localStorage.getItem('hotelCheckin');
+  const savedHotelCheckout = localStorage.getItem('hotelCheckout');
+  const savedHotelCost = localStorage.getItem('hotelCost');
+  if (savedHotelName && savedHotelCheckin && savedHotelCheckout && savedHotelCost) {
+    document.getElementById('hotel-name').value = savedHotelName;
+    document.getElementById('hotel-checkin').value = savedHotelCheckin;
+    document.getElementById('hotel-checkout').value = savedHotelCheckout;
+    document.getElementById('hotel-cost').value = savedHotelCost;
+    document.getElementById('hotelname-display').innerText = savedHotelName;
+    document.getElementById('hotelcheckin-display').innerText = savedHotelCheckin;
+    document.getElementById('hotelcheckout-display').innerText = savedHotelCheckout;
+    document.getElementById('hotelcost-display').innerText = `$${savedHotelCost}`;
+  }
+
+  // Recall activities
+  const savedActivityName = localStorage.getItem('activityName');
+  const savedActivityDate = localStorage.getItem('activityDate');
+  const savedActivityTime = localStorage.getItem('activityTime');
+  const savedActivityCost = localStorage.getItem('activityCost');
+  if (savedActivityName && savedActivityDate && savedActivityTime && savedActivityCost) {
+    document.getElementById('activity-name').value = savedActivityName;
+    document.getElementById('activity-date').value = savedActivityDate;
+    document.getElementById('activity-time').value = savedActivityTime;
+    document.getElementById('activity-cost').value = savedActivityCost;
+    document.getElementById('activityname-display').innerText = savedActivityName;
+    document.getElementById('activitydate-display').innerText = savedActivityDate;
+    document.getElementById('activitytime-display').innerText = savedActivityTime;
+    document.getElementById('activitycost-display').innerText = `$${savedActivityCost}`;
+  }
+
+  // Recall checklist items
+  const savedChecklist = JSON.parse(localStorage.getItem('checklist')) || [];
+  savedChecklist.forEach(item => {
+    const listItem = document.createElement("li");
+    listItem.textContent = item;
+    checklist.appendChild(listItem);
+  });
+}
+
+// Call the function to recall data when the page loads
+document.addEventListener('DOMContentLoaded', recallLocalStorage)
