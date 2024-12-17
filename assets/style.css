@@ -1,46 +1,56 @@
+
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #0c0404;
+  background-image: url(https://cdn.create.microsoft.com/catalog-assets/en-us/00005288-0018-0000-24ee-5b6db028c9ab/thumbnails/600/city-explorer-brown-modern-simple-1-72f0406e63e3.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
 }
 
-.navbar {
+
+/* Header Styles */
+header {
+  background-color: #384638;
+  padding: 15px 20px; 
+  color: #fff; 
+  text-align: center;
+}
+
+header .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #ddd;
 }
 
-.navbar-left h1 {
-  font-size: 24px;
-  color: #333;
-  margin: 0;
+header .navbar-left h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-.navbar-right {
-  display: flex;
-  gap: 15px;
-}
-
-.navbar-right a {
+header .navbar-right a {
+  color: #fff;
   text-decoration: none;
-  color: #007bff;
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
+  margin-left: 15px; 
+  font-size: 1rem;
 }
-
-.navbar-right a:hover {
-  background-color: #007bff;
-  color: white;
+.logo {
+  height: 100%;
+  max-height: 50px;
+  width: auto; 
+  margin-right: 15px;
+  object-fit: contain; 
+  vertical-align: middle; 
 }
-
+header .navbar-right a:hover {
+  color: #f0f0f0;
+  text-decoration:underline
+}
 
 /* Columns Wrapper */
 #columns-container {
@@ -113,7 +123,11 @@ section {
 section:not(.hidden) {
   display: block;
 }
-
+#left-column,
+ #middle-column,
+ #right-column{
+  background-color: #c3cac4;
+}
 /* Ensures Inputs and Other Elements Align Nicely */
 .column label,
 .column input,
@@ -125,7 +139,7 @@ section:not(.hidden) {
 
 .column button {
   padding: 10px;
-  background-color: #2bca50;
+  background-color: #233727;
   color: white;
   border: none;
   border-radius: 5px;
@@ -137,3 +151,17 @@ section:not(.hidden) {
 .column button:hover {
   background-color: #218838;
 }
+
+
+footer {
+  background: #384638;
+  color: #ffffff; 
+  text-align: center;
+  padding: 1rem 0;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 2rem;
+ 
+}
+
