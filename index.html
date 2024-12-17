@@ -10,135 +10,152 @@
   </head>
   <body>
   <header>
-      <h1>Trippit</h1>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-          <a class="navbar-brand" href="#">Travel Made Extraordinary</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <ul>
-                <li><a class="nav-link active" aria-current="page" href="https://travel.usnews.com/rankings/worlds-best-vacations/">Destination Ideas</a></li>
-                <li><a class="nav-link" href="https://www.expedia.com/">Expedia</a></li>
-                <li><a class="nav-link" href="https://www.hotels.com/">Hotels</a></li>
-                <li><a class="nav-link" href="https://www.yelp.com/">Yelp</a></li>
-            </ul>
-          </div>
-        </div>
+    <nav class="navbar">
+      <div class="navbar-left">
+        <h1>Trippit - Travel Planner</h1>
+      </div>
+      <div class="navbar-right">
+        <a href="#budget">Budget</a>
+        <a href="#destination">Destination</a>
+        <a href="#flight">Flight</a>
+        <a href="#hotel">Hotel</a>
+        <a href="#food">Food</a>
+        <a href="#activities">Activities</a>
       </div>
     </nav>
+    
   </header>
 
   <main>
     <div id="columns-container"> <!-- Whole Main Page Container --->
       
-      <!--Input -->
-    <section id="left-column">
-      <!-- Budget Input -->
-      <div id="budget-input">
-        <h2>Set Budget</h2>
-        <input type="number" id="total-budget" name="Total-Budget">
-        <button id="save-budget">Save Budget</button>
-      </div>
-      <!-- Destination Input --->
-      <div id="destination-input">
-        <h2>Add Destination</h2>
-        <label for="destination">Destination:</label>
-        <input type="text" id="destination" name="destination">
-        <label for="destination-start-date">Start Date:</label>
-        <input type="date" id="destination-start-date" name="destination-start-date" required>
-        <label for="destination-end-date">End Date:</label>
-        <input type="date" id="destination-end-date" name="destination-end-date" required>
-        <button id="add-destination">Add Destination</button>
-      </div>
-      <!-- Flight Input --->
-      <div id="flights-input">
-        <h2>Add Flight</h2>
-        <label for="airline">Airline:</label>
-        <input type="text" id="airline" name="airline" placeholder="Enter airline" required>
-        <label for="flight-number">Flight Number</label>
-        <input type="text" id="flight-number", name="flight-number" placeholder="Enter Flight Number" required>
-        <label for="departing-flight">Departing flight</label>
-        <input type="date" id="departing-flight" name="departing-flight">
-        <label for="returning-flight">Returning flight</label>
-        <input type="date" id="returning-flight" name="returning-flight">
-        <label for="flight-cost">Flight Cost</label>
-        <input type="text" id="flight-cost" name="flight-cost">
-        <label for="traveler-number">Travelers</label>
-        <input type="number" id="traveler-number" name="traveler-number">
-        <button id="add-flight">Add Flight</button>
-      </div>
-      <!-- Hotel Input --->
-      <div id="hotels-section">
-        <h2>Add Hotel</h2>
-        <input type="text" id="hotel-name" name="hotel-name" placeholder="Enter hotel name" required>
-        <label for="hotel-checkin">Check-in Date:</label>
-        <input type="date" id="hotel-checkin" name="hotel-checkin" required>
-        <label for="hotel-checkout">Check-out Date:</label>
-        <input type="date" id="hotel-checkout" name="hotel-checkout" required>
-        <label for="hotel-cost">Cost per Night:</label>
-        <input type="number" id="hotel-cost" name="hotel-cost" placeholder="Enter cost per night" required>
-        <button id="add-hotel">Add Hotel</button>
-      </div>
-      <!-- Activity Input --->
-      <div id="activities-input">
-        <h2>Add Activity</h2>
-        <label for="activity-name">Activity Name:</label>
-        <input type="text" id="activity-name" name="activity-name" placeholder="Enter activity" required>
-        <label for="activity-date">Date:</label>
-        <input type="date" id="activity-date" name="activity-date" required>
-        <label for="activity-time">Time:</label>
-        <input type="time" id="activity-time" name="activity-time">
-        <label for="activity-cost">Cost:</label>
-        <input type="number" id="activity-cost" name="activity-cost" placeholder="Enter activity cost">
-        <button id="add-activity">Add Activity</button>
-      </div>
-    </section>
+      <div class="column" id="left-column">
 
-    <!-- Summary -->
-    <section class="column" id="middle-column">
-      <!-- Budget Overview --->
-      <div id="budget-overview">
-        <h2>Budget Overview</h2>
-        <li><p><strong>Total Budget:</strong> <span id="display-budget">$0</span></p></li>
-        <li><p><strong>Total Expenses:</strong> <span id="display-expenses">$0</span></p></li>
-        <li><p><strong>Remaining Budget:</strong> <span id="display-remaining">$0</span></p></li>
+        <div id="category-buttons">
+          <button class="category-button" data-category="destination">Destination</button>
+          <button class="category-button" data-category="flight">Flight</button>
+          <button class="category-button" data-category="hotel">Hotel</button>
+          <button class="category-button" data-category="food">Food</button>
+          <button class="category-button" data-category="activity">Activities</button>
+        </div>
+        <!-- Input Sections -->
+        <section id="destination-section">
+          <h2>Destination</h2>
+          <label for="destination">Destination:</label>
+          <input type="text" id="destination" placeholder="Enter destination">
+          <label for="destination-start-date">Start Date:</label>
+          <input type="date" id="destination-start-date">
+          <label for="destination-end-date">End Date:</label>
+          <input type="date" id="destination-end-date">
+          <button id="add-destination">Add Destination</button>
+        </section>
+      
+        <section id="flight-section" class="hidden">
+          <h2>Flight</h2>
+          <label for="airline">Airline:</label>
+          <input type="text" id="airline" placeholder="Enter airline">
+          <label for="flight-number">Flight Number:</label>
+          <input type="text" id="flight-number">
+          <label for="departing-flight">Departing Date:</label>
+          <input type="date" id="departing-flight">
+          <label for="returning-flight">Returning Date:</label>
+          <input type="date" id="returning-flight">
+          <label for="flight-cost">Cost per Traveler:</label>
+          <input type="number" id="flight-cost" placeholder="Enter flight cost">
+          <label for="traveler-number">Number of Travelers:</label>
+          <input type="number" id="traveler-number" placeholder="Enter number of travelers">
+          <button id="add-flight">Add Flight</button>
+        </section>
+      
+        <section id="hotel-section" class="hidden">
+          <h2>Hotel</h2>
+          <label for="hotel-name">Hotel Name:</label>
+          <input type="text" id="hotel-name" placeholder="Enter hotel name">
+          <label for="hotel-checkin">Check-In Date:</label>
+          <input type="date" id="hotel-checkin">
+          <label for="hotel-checkout">Check-Out Date:</label>
+          <input type="date" id="hotel-checkout">
+          <label for="hotel-cost">Cost:</label>
+          <input type="number" id="hotel-cost" placeholder="Enter hotel cost">
+          <button id="add-hotel">Add Hotel</button>
+        </section>
+      
+        <section id="food-section" class="hidden">
+          <h2>Food</h2>
+          <label for="food-item">Food Item:</label>
+          <input type="text" id="food-item" placeholder="Enter food item">
+          <label for="food-date">Date:</label>
+          <input type="date" id="food-date">
+          <label for="food-cost">Cost:</label>
+          <input type="number" id="food-cost" placeholder="Enter food cost">
+          <button id="add-food">Add Food</button>
+        </section>
+      
+        <section id="activity-section" class="hidden">
+          <h2>Activities</h2>
+          <label for="activity-name">Activity Name:</label>
+          <input type="text" id="activity-name" placeholder="Enter activity name">
+          <label for="activity-date">Date:</label>
+          <input type="date" id="activity-date">
+          <label for="activity-time">Time:</label>
+          <input type="time" id="activity-time">
+          <label for="activity-cost">Cost:</label>
+          <input type="number" id="activity-cost" placeholder="Enter activity cost">
+          <button id="add-activity">Add Activity</button>
+        </section>
       </div>
+      
+      
+    <!-- Summary -->
+    <div class="column" id="middle-column">
+      <!-- Budget Overview --->
+      <section id="budget-section">
+        <h2>Budget</h2>
+        <label for="total-budget">Total Budget:</label>
+        <input type="number" id="total-budget" placeholder="Enter total budget">
+        <button id="save-budget">Save Budget</button>
+        <p>Total Budget: <span id="display-budget">$0.00</span></p>
+        <p>Remaining Budget: <span id="remaining-budget">$0.00</span></p>
+      
+        <!-- Display categorized budgets -->
+        <div id="category-budget-display"></div>
+      
+        <!-- Chart for budget visualization -->
+        <canvas id="budget-chart" width="400" height="400"></canvas>
+      </section>
       <!-- Destination Summary --->
-      <div id="destination-summary">
+      <section id="destination-summary">
         <h2>Destinations</h2>
         <ul id="destination-list">
           <li><p><strong>Destination:</strong> <span id="destination-display"></span></p></li>
           <li><p><strong>Start Date:</strong> <span id="startdate-display"></span></p></li>
           <li><p><strong>End Date:</strong> <span id="enddate-display"></span></p></li>
         </ul>
-      </div>
+      </section>
       <!-- Flight Summary --->
-      <div id="flights-summary">
+      <section id="flights-summary">
         <h2>Flights</h2>
         <ul id="flight-list">
           <li><p><strong>Airline</strong> <span id="airline-display">*****</span></p></li>
           <li><p><strong>Flight Number</strong> <span id="flightnumber-display">*****</span></p></li>
           <li><p><strong>Departing Flight</strong> <span id="departingflight-display">*****</span></p></li>
           <li><p><strong>Returning Flight</strong> <span id="returningflight-display">*****</span></p></li>
-          <li><p><strong>Cost</strong> <span id="flightcost-display">*****</span></p></li>
+          <li><p><strong>Cost:</strong> <span id="flightcost-display">*****</span></p></li>
           <li><p><strong>Travelers</strong> <span id="traveler-display"></span></p></li>
         </ul>
-      </div>
+      </section>
       <!-- Hotel Summary --->
-      <div id="hotels-summary">
+      <section id="hotels-summary">
         <h2>Hotels</h2>
         <ul id="hotel-list">
           <li><p><strong>Hotel Name</strong> <span id="hotelname-display">*****</span></p></li>
           <li><p><strong>Hotel Check In</strong> <span id="hotelcheckin-display">*****</span></p></li>
           <li><p><strong>Hotel Checkout</strong> <span id="hotelcheckout-display">*****</span></p></li>
-          <li><p><strong>Hotel Cost per night</strong> <span id="hotelcost-display">****</span></p></li>
+          <li><p><strong>Hotel Cost</strong> <span id="hotelcost-display">$$$$$</span></p></li>
         </ul>
-      </div>
+      </section>
       <!-- Activity Summary --->
-      <div id="activities-summary">
+      <section id="activities-summary">
         <h2>Activities</h2>
         <ul id="activity-list">
           <li><p><strong>Activity Name: </strong> <span id="activityname-display">*****</span></p></li>
@@ -146,8 +163,13 @@
           <li><p><strong>Time: </strong> <span id="activitytime-display">*****</span></p></li>
           <li><p><strong>Cost</strong> <span id="activitycost-display">*****</span></p></li>
         </ul>
-      </div>
-    </section>
+      </section>
+      <section id="food-summary">
+        <p><strong>Food Item:</strong> <span id="fooditem-display">N/A</span></p>
+        <p><strong>Date:</strong> <span id="fooddate-display">N/A</span></p>
+        <p><strong>Cost:</strong> <span id="foodcost-display">$0.00</span></p>
+      </section>
+    </div>
 
 
     <!-- Other Features --->
@@ -160,17 +182,12 @@
         </div>
       </div>
       <!-- Checklist --->
-      <div id="checklist-section">
+      <div id="packing-section">
         <h2>Packing Checklist</h2>
-        <ul id="checklist"></ul>
-        <input type="text" id="new-item" placeholder="Add an item">
+        <label for="new-item">Add Item:</label>
+        <input type="text" id="new-item" placeholder="Enter item name">
         <button id="add-item">Add Item</button>
-      </div>
-      <!-- Notes --->
-      <div id="notes-section">
-        <h2>Travel Notes</h2>
-        <textarea id="notes" rows="5" placeholder="Write your travel notes here..."></textarea>
-        <button id="save-notes">Save Notes</button>
+        <div id="checklist-section"></div>
       </div>
     </section>
   </div>
@@ -180,5 +197,6 @@
     <p>&copy; 2024 Trippit. All rights reserved.</p>
   </footer>
  <script src="./assets/script.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
