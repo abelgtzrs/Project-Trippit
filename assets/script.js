@@ -58,6 +58,9 @@ saveBudget?.addEventListener("click", () => {
   }
 
   displayCategoryBudgets(); // Update chart and display
+
+  // Clear input box
+  budgetInput.value = "";
 });
 
 // Destination Functionality -----------------------------------------------------------------------------------
@@ -90,7 +93,10 @@ addDestination?.addEventListener("click", (event) => {
     localStorage.setItem('destinationStartDate', startDate);
     localStorage.setItem('destinationEndDate', endDate);
 
-    
+    // Clear input boxes
+    destinationInput.value = "";
+    destinationStartDate.value = "";
+    destinationEndDate.value = "";
   }
 });
 
@@ -149,6 +155,14 @@ addFlight?.addEventListener("click", (event) => {
     localStorage.setItem('returningFlight', returningFlightValue);
     localStorage.setItem('flightCost', flightCostValue);
     localStorage.setItem('travelerNumber', travelerNumberValue);
+
+    // Clear input boxes
+    airline.value = "";
+    flightNumber.value = "";
+    departingDate.value = "";
+    returningDate.value = "";
+    flightCostInput.value = "";
+    flightTraveler.value = "";
   }
 });
 
@@ -189,8 +203,15 @@ addFlight?.addEventListener("click", (event) => {
       localStorage.setItem('hotelCheckin', hotelCheckinValue);
       localStorage.setItem('hotelCheckout', hotelCheckoutValue);
       localStorage.setItem('hotelCost', hotelCostValue);
+
+      // Clear input boxes
+      hotelName.value = "";
+      hotelCheckIn.value = "";
+      hotelCheckOut.value = "";
+      hotelCostInput.value = "";
     }
   });
+
 //Display Activity information------------------------------------------------------------------------------------
 const addActivityButton = document.querySelector("#add-activity");
 
@@ -229,6 +250,12 @@ addActivityButton?.addEventListener("click", (event) => {
     localStorage.setItem('activityDate', activityDateValue);
     localStorage.setItem('activityTime', activityTimeValue);
     localStorage.setItem('activityCost', activityCostValue);
+
+    // Clear input boxes
+    activityNameInput.value = "";
+    activityDateInput.value = "";
+    activityTimeInput.value = "";
+    activityCostInput.value = "";
   }
 });
 
@@ -265,6 +292,11 @@ addFoodButton?.addEventListener("click", (event) => {
     localStorage.setItem('foodItem', foodItemValue);
     localStorage.setItem('foodDate', foodDateValue);
     localStorage.setItem('foodCost', foodCostValue);
+
+    // Clear input boxes
+    foodItemInput.value = "";
+    foodDateInput.value = "";
+    foodCostInput.value = "";
   }
 });
 
@@ -313,6 +345,9 @@ function addCheckbox(labelText) {
 addItemButton?.addEventListener("click", (event) => {
   event.preventDefault();
   addCheckbox();
+
+  // Clear input box
+  packingItemInput.value = "";
 });
 
 //Remaining Budget Function---------------------------------------------------------------------------------
@@ -364,7 +399,7 @@ function displayCategoryBudgets() {
     categoryBudgetDisplay.appendChild(openBudgetRow);
   }
   
-    function saveChartToLocalStorage(labels, data) {
+   function saveChartToLocalStorage(labels, data) {
     localStorage.setItem('chartLabels', JSON.stringify(labels));
     localStorage.setItem('chartData', JSON.stringify(data));
   }
@@ -478,6 +513,7 @@ function recallLocalStorage() {
   const savedDestination = localStorage.getItem('destination');
   const savedStartDate = localStorage.getItem('destinationStartDate');
   const savedEndDate = localStorage.getItem('destinationEndDate');
+
   if (savedDestination !== null && savedStartDate !== null && savedEndDate !== null) {
     destinationInput.value = savedDestination;
     destinationStartDate.value = savedStartDate;
@@ -492,6 +528,7 @@ function recallLocalStorage() {
   const savedReturningFlight = localStorage.getItem('returningFlight');
   const savedFlightCost = localStorage.getItem('flightCost');
   const savedTravelerNumber = localStorage.getItem('travelerNumber');
+
   if (savedAirline !== null && savedFlightNumber !== null && savedDepartingFlight !== null && savedReturningFlight !== null && savedFlightCost !== null && savedTravelerNumber !== null) {
     airline.value = savedAirline;
     flightNumber.value = savedFlightNumber;
@@ -507,6 +544,7 @@ function recallLocalStorage() {
   const savedHotelCheckin = localStorage.getItem('hotelCheckin');
   const savedHotelCheckout = localStorage.getItem('hotelCheckout');
   const savedHotelCost = localStorage.getItem('hotelCost');
+
   if (savedHotelName !== null && savedHotelCheckin !== null && savedHotelCheckout !== null && savedHotelCost !== null) {
     hotelName.value = savedHotelName;
     hotelCheckIn.value = savedHotelCheckin;
@@ -519,6 +557,7 @@ function recallLocalStorage() {
   const savedFoodItem = localStorage.getItem('foodItem');
   const savedFoodDate = localStorage.getItem('foodDate');
   const savedFoodCost = localStorage.getItem('foodCost');
+
   if (savedFoodItem !== null && savedFoodDate !== null && savedFoodCost !== null) {
     foodItemInput.value = savedFoodItem;
     foodDateInput.value = savedFoodDate;
@@ -531,6 +570,7 @@ function recallLocalStorage() {
   const savedActivityDate = localStorage.getItem('activityDate');
   const savedActivityTime = localStorage.getItem('activityTime');
   const savedActivityCost = localStorage.getItem('activityCost');
+  
   if (savedActivityName !== null && savedActivityDate !== null && savedActivityTime !== null && savedActivityCost !== null) {
     activityNameInput.value = savedActivityName;
     activityDateInput.value = savedActivityDate;
