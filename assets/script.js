@@ -131,7 +131,7 @@ function updateFlight() {
   displayCategoryBudgets();
 }
 
-addFlight.addEventListener("click", (event) => {
+addFlight?.addEventListener("click", (event) => {
   event.preventDefault();
   updateFlight();
 
@@ -300,29 +300,20 @@ function addCheckbox(labelText) {
   container.appendChild(label);
   checklistSection?.appendChild(container);
 
-  if (!packingItemInput.value) {
-    return;
-  }
-
   // Save checklist item to local storage
   let checklistItems = JSON.parse(localStorage.getItem('checklist')) || [];
-  checklistItems.push(labelText);
-  localStorage.setItem('checklist', JSON.stringify(checklistItems));
+  if (!checklistItems.includes(labelText)) {
+    checklistItems.push(labelText);
+    localStorage.setItem('checklist', JSON.stringify(checklistItems));
+  }
 
   packingItemInput.value = "";
 }
 
-function saveChecklistToLocalStorage() {
-  const checklistItems = Array.from(document.querySelectorAll("#checklist-section div label")).map(label => label.textContent);
-  localStorage.setItem('checklist', JSON.stringify(checklistItems));
-}
-
-function saveChartToLocalStorage(labels, data) {
-  localStorage.setItem('chartLabels', JSON.stringify(labels));
-  localStorage.setItem('chartData', JSON.stringify(data));
-}
-
-addItemButton?.addEventListener("click", addCheckbox);
+addItemButton?.addEventListener("click", (event) => {
+  event.preventDefault();
+  addCheckbox();
+});
 
 //Remaining Budget Function---------------------------------------------------------------------------------
 function updateRemainingBudget(expense){
@@ -371,6 +362,11 @@ function displayCategoryBudgets() {
       <p><strong>Open Budget:</strong> $${openBudget.toFixed(2)} (${((openBudget / totalBudget) * 100).toFixed(2)}%)</p>
     `;
     categoryBudgetDisplay.appendChild(openBudgetRow);
+  }
+  
+    function saveChartToLocalStorage(labels, data) {
+    localStorage.setItem('chartLabels', JSON.stringify(labels));
+    localStorage.setItem('chartData', JSON.stringify(data));
   }
 
   saveChartToLocalStorage(chartLabels, chartData);
