@@ -5,7 +5,8 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-color: #0c0404;
-  background-image: url(https://cdn.create.microsoft.com/catalog-assets/en-us/00005288-0018-0000-24ee-5b6db028c9ab/thumbnails/600/city-explorer-brown-modern-simple-1-72f0406e63e3.webp);
+  background-image: url(https://images.squarespace-cdn.com/content/v1/5ac51fef12b13f3895955c3e/1539720328891-AAXM8Y3W57I764LLXDIE/personal+and+car+loans);
+
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -52,7 +53,6 @@ header .navbar-right a:hover {
   text-decoration:underline
 }
 
-/* Columns Wrapper */
 #columns-container {
   display: flex;
   flex-direction: row;
@@ -64,7 +64,6 @@ header .navbar-right a:hover {
   margin: auto;
 }
 
-/* Individual Columns */
 .column {
   flex: 0 0 25%;
   padding: 20px;
@@ -82,7 +81,6 @@ header .navbar-right a:hover {
   color: #333;
 }
 
-/* Budget Textbox */
 #total-budget {
   width: 100%;
   padding: 12px;
@@ -93,7 +91,6 @@ header .navbar-right a:hover {
   box-sizing: border-box;
 }
 
-/* Buttons Row for Navigation */
 #category-buttons {
   display: flex;
   justify-content: center;
@@ -115,7 +112,6 @@ header .navbar-right a:hover {
   background-color: #0056b3;
 }
 
-/* Sections within Columns */
 section {
   display: none;
 }
@@ -128,7 +124,7 @@ section:not(.hidden) {
  #right-column{
   background-color: #c3cac4;
 }
-/* Ensures Inputs and Other Elements Align Nicely */
+
 .column label,
 .column input,
 .column button {
@@ -164,4 +160,76 @@ footer {
   margin-top: 2rem;
  
 }
+
+section {
+  display: none;
+}
+
+section:not(.hidden) {
+  display: block;
+}
+
+#left-column,
+ #middle-column,
+ #right-column{
+  background-color: #c3cac4;
+}
+.column label,
+.column input,
+.column button {
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.column button {
+  padding: 10px;
+  background-color: #233727;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.column button:hover {
+  background-color: #218838;
+}
+
+
+#trip-management h2 {
+  margin-bottom: 10px;
+}
+.alert-message {
+  color: rgb(0, 255, 55);
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+
+
+@media (max-width: 768px) {
+  #columns-container {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .column {
+    width: 90%;
+    margin-bottom: 15px; 
+  }
+}
+
+footer {
+  background: #384638;
+  color: #ffffff; 
+  text-align: center;
+  padding: 1rem 0;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 2rem;
 
