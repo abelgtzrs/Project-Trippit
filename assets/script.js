@@ -485,7 +485,7 @@ function updateRemainingBudgets() {
     const remainingBudget = budgets[category] - expenses[category];
     console.log(`Remaining budget for ${category}: $${remainingBudget.toFixed(2)}`);
   }
-}
+};
 
 // Example usage
 const initialBudget = 3000;
@@ -510,72 +510,82 @@ function recallLocalStorage() {
   }
 
   // Recall destinations
-  const savedDestination = localStorage.getItem('destination');
-  const savedStartDate = localStorage.getItem('destinationStartDate');
-  const savedEndDate = localStorage.getItem('destinationEndDate');
-
-  if (savedDestination !== null && savedStartDate !== null && savedEndDate !== null) {
-    destinationInput.value = savedDestination;
-    destinationStartDate.value = savedStartDate;
-    destinationEndDate.value = savedEndDate;
+  const destinationData = {
+    destination: localStorage.getItem('destination'),
+    startDate: localStorage.getItem('destinationStartDate'),
+    endDate: localStorage.getItem('destinationEndDate')
+  };
+  
+  if (Object.values(destinationData).every(value => value !== null)) {
+    destinationInput.value = destinationData.destination;
+    destinationStartDate.value = destinationData.startDate;
+    destinationEndDate.value = destinationData.endDate;
     updateDestination();
   }
 
   // Recall flights
-  const savedAirline = localStorage.getItem('airline');
-  const savedFlightNumber = localStorage.getItem('flightNumber');
-  const savedDepartingFlight = localStorage.getItem('departingFlight');
-  const savedReturningFlight = localStorage.getItem('returningFlight');
-  const savedFlightCost = localStorage.getItem('flightCost');
-  const savedTravelerNumber = localStorage.getItem('travelerNumber');
-
-  if (savedAirline !== null && savedFlightNumber !== null && savedDepartingFlight !== null && savedReturningFlight !== null && savedFlightCost !== null && savedTravelerNumber !== null) {
-    airline.value = savedAirline;
-    flightNumber.value = savedFlightNumber;
-    departingDate.value = savedDepartingFlight;
-    returningDate.value = savedReturningFlight;
-    flightCostInput.value = savedFlightCost;
-    flightTraveler.value = savedTravelerNumber;
+  const flightData = {
+    airline: localStorage.getItem('airline'),
+    flightNumber: localStorage.getItem('flightNumber'),
+    departingFlight: localStorage.getItem('departingFlight'),
+    returningFlight: localStorage.getItem('returningFlight'),
+    flightCost: localStorage.getItem('flightCost'),
+    travelerNumber: localStorage.getItem('travelerNumber')
+  };
+  
+  if (Object.values(flightData).every(value => value !== null)) {
+    airline.value = flightData.airline;
+    flightNumber.value = flightData.flightNumber;
+    departingDate.value = flightData.departingFlight;
+    returningDate.value = flightData.returningFlight;
+    flightCostInput.value = flightData.flightCost;
+    flightTraveler.value = flightData.travelerNumber;
     updateFlight();
   }
 
   // Recall hotels
-  const savedHotelName = localStorage.getItem('hotelName');
-  const savedHotelCheckin = localStorage.getItem('hotelCheckin');
-  const savedHotelCheckout = localStorage.getItem('hotelCheckout');
-  const savedHotelCost = localStorage.getItem('hotelCost');
-
-  if (savedHotelName !== null && savedHotelCheckin !== null && savedHotelCheckout !== null && savedHotelCost !== null) {
-    hotelName.value = savedHotelName;
-    hotelCheckIn.value = savedHotelCheckin;
-    hotelCheckOut.value = savedHotelCheckout;
-    hotelCostInput.value = savedHotelCost;
+  const hotelData = {
+    hotelName: localStorage.getItem('hotelName'),
+    hotelCheckin: localStorage.getItem('hotelCheckin'),
+    hotelCheckout: localStorage.getItem('hotelCheckout'),
+    hotelCost: localStorage.getItem('hotelCost')
+  };
+  
+  if (Object.values(hotelData).every(value => value !== null)) {
+    hotelName.value = hotelData.hotelName;
+    hotelCheckIn.value = hotelData.hotelCheckin;
+    hotelCheckOut.value = hotelData.hotelCheckout;
+    hotelCostInput.value = hotelData.hotelCost;
     updateHotel();
   }
 
   // Recall food
-  const savedFoodItem = localStorage.getItem('foodItem');
-  const savedFoodDate = localStorage.getItem('foodDate');
-  const savedFoodCost = localStorage.getItem('foodCost');
-
-  if (savedFoodItem !== null && savedFoodDate !== null && savedFoodCost !== null) {
-    foodItemInput.value = savedFoodItem;
-    foodDateInput.value = savedFoodDate;
-    foodCostInput.value = savedFoodCost;
+  const savedFood = {
+    item: localStorage.getItem('foodItem'),
+    date: localStorage.getItem('foodDate'),
+    cost: localStorage.getItem('foodCost')
+  };
+  
+  if (Object.values(savedFood).every(value => value !== null)) {
+    foodItemInput.value = savedFood.item;
+    foodDateInput.value = savedFood.date;
+    foodCostInput.value = savedFood.cost;
     updateFood();
   }
 
   // Recall activities
-  const savedActivityName = localStorage.getItem('activityName');
-  const savedActivityDate = localStorage.getItem('activityDate');
-  const savedActivityTime = localStorage.getItem('activityTime');
-  const savedActivityCost = localStorage.getItem('activityCost');
+  const savedActivity = {
+    name: localStorage.getItem('activityName'),
+    date: localStorage.getItem('activityDate'),
+    time: localStorage.getItem('activityTime'),
+    cost: localStorage.getItem('activityCost')
+  };
   
-  if (savedActivityName !== null && savedActivityDate !== null && savedActivityTime !== null && savedActivityCost !== null) {
-    activityNameInput.value = savedActivityName;
-    activityDateInput.value = savedActivityDate;
-    activityTimeInput.value = savedActivityTime;
-    activityCostInput.value = savedActivityCost;
+  if (Object.values(savedActivity).every(value => value !== null)) {
+    activityNameInput.value = savedActivity.name;
+    activityDateInput.value = savedActivity.date;
+    activityTimeInput.value = savedActivity.time;
+    activityCostInput.value = savedActivity.cost;
     updateActivity();
   }
 
