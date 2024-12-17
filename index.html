@@ -48,6 +48,12 @@
           <label for="destination-end-date">End Date:</label>
           <input type="date" id="destination-end-date">
           <button id="add-destination">Add Destination</button>
+          <h2>Destinations</h2>
+        <ul id="destination-list">
+          <li><p><strong>Destination:</strong> <span id="destination-display"></span></p></li>
+          <li><p><strong>Start Date:</strong> <span id="startdate-display"></span></p></li>
+          <li><p><strong>End Date:</strong> <span id="enddate-display"></span></p></li>
+        </ul>
         </section>
       
         <section id="flight-section" class="hidden">
@@ -65,6 +71,15 @@
           <label for="traveler-number">Number of Travelers:</label>
           <input type="number" id="traveler-number" placeholder="Enter number of travelers">
           <button id="add-flight">Add Flight</button>
+          <h2>Flights</h2>
+        <ul id="flight-list">
+          <li><p><strong>Airline</strong> <span id="airline-display">*****</span></p></li>
+          <li><p><strong>Flight Number</strong> <span id="flightnumber-display">*****</span></p></li>
+          <li><p><strong>Departing Flight</strong> <span id="departingflight-display">*****</span></p></li>
+          <li><p><strong>Returning Flight</strong> <span id="returningflight-display">*****</span></p></li>
+          <li><p><strong>Cost:</strong> <span id="flightcost-display">*****</span></p></li>
+          <li><p><strong>Travelers</strong> <span id="traveler-display"></span></p></li>
+        </ul>
         </section>
       
         <section id="hotel-section" class="hidden">
@@ -78,6 +93,13 @@
           <label for="hotel-cost">Cost:</label>
           <input type="number" id="hotel-cost" placeholder="Enter hotel cost">
           <button id="add-hotel">Add Hotel</button>
+          <h2>Hotels</h2>
+          <ul id="hotel-list">
+            <li><p><strong>Hotel Name</strong> <span id="hotelname-display">*****</span></p></li>
+            <li><p><strong>Hotel Check In</strong> <span id="hotelcheckin-display">*****</span></p></li>
+            <li><p><strong>Hotel Checkout</strong> <span id="hotelcheckout-display">*****</span></p></li>
+            <li><p><strong>Hotel Cost</strong> <span id="hotelcost-display">$$$$$</span></p></li>
+          </ul>
         </section>
       
         <section id="food-section" class="hidden">
@@ -89,6 +111,12 @@
           <label for="food-cost">Cost:</label>
           <input type="number" id="food-cost" placeholder="Enter food cost">
           <button id="add-food">Add Food</button>
+          <h2>Food</h2>
+          <ul id="food-summary">
+            <li><strong>Food Item:</strong> <span id="fooditem-display">N/A</span></li>
+            <li><strong>Date:</strong> <span id="fooddate-display">N/A</span></li>
+            <li><strong>Cost:</strong> <span id="foodcost-display">$0.00</span></li>
+          </section>
         </section>
       
         <section id="activity-section" class="hidden">
@@ -102,6 +130,13 @@
           <label for="activity-cost">Cost:</label>
           <input type="number" id="activity-cost" placeholder="Enter activity cost">
           <button id="add-activity">Add Activity</button>
+          <h2>Activities</h2>
+          <ul id="activity-list">
+            <li><p><strong>Activity Name: </strong> <span id="activityname-display">*****</span></p></li>
+            <li><p><strong>Date: </strong> <span id="activitydate-display">*****</span></p></li>
+            <li><p><strong>Time: </strong> <span id="activitytime-display">*****</span></p></li>
+            <li><p><strong>Cost</strong> <span id="activitycost-display">*****</span></p></li>
+          </ul>
         </section>
       </div>
       
@@ -122,52 +157,6 @@
       
         <!-- Chart for budget visualization -->
         <canvas id="budget-chart" width="400" height="400"></canvas>
-      </section>
-      <!-- Destination Summary --->
-      <section id="destination-summary">
-        <h2>Destinations</h2>
-        <ul id="destination-list">
-          <li><p><strong>Destination:</strong> <span id="destination-display"></span></p></li>
-          <li><p><strong>Start Date:</strong> <span id="startdate-display"></span></p></li>
-          <li><p><strong>End Date:</strong> <span id="enddate-display"></span></p></li>
-        </ul>
-      </section>
-      <!-- Flight Summary --->
-      <section id="flights-summary">
-        <h2>Flights</h2>
-        <ul id="flight-list">
-          <li><p><strong>Airline</strong> <span id="airline-display">*****</span></p></li>
-          <li><p><strong>Flight Number</strong> <span id="flightnumber-display">*****</span></p></li>
-          <li><p><strong>Departing Flight</strong> <span id="departingflight-display">*****</span></p></li>
-          <li><p><strong>Returning Flight</strong> <span id="returningflight-display">*****</span></p></li>
-          <li><p><strong>Cost:</strong> <span id="flightcost-display">*****</span></p></li>
-          <li><p><strong>Travelers</strong> <span id="traveler-display"></span></p></li>
-        </ul>
-      </section>
-      <!-- Hotel Summary --->
-      <section id="hotels-summary">
-        <h2>Hotels</h2>
-        <ul id="hotel-list">
-          <li><p><strong>Hotel Name</strong> <span id="hotelname-display">*****</span></p></li>
-          <li><p><strong>Hotel Check In</strong> <span id="hotelcheckin-display">*****</span></p></li>
-          <li><p><strong>Hotel Checkout</strong> <span id="hotelcheckout-display">*****</span></p></li>
-          <li><p><strong>Hotel Cost</strong> <span id="hotelcost-display">$$$$$</span></p></li>
-        </ul>
-      </section>
-      <!-- Activity Summary --->
-      <section id="activities-summary">
-        <h2>Activities</h2>
-        <ul id="activity-list">
-          <li><p><strong>Activity Name: </strong> <span id="activityname-display">*****</span></p></li>
-          <li><p><strong>Date: </strong> <span id="activitydate-display">*****</span></p></li>
-          <li><p><strong>Time: </strong> <span id="activitytime-display">*****</span></p></li>
-          <li><p><strong>Cost</strong> <span id="activitycost-display">*****</span></p></li>
-        </ul>
-      </section>
-      <section id="food-summary">
-        <p><strong>Food Item:</strong> <span id="fooditem-display">N/A</span></p>
-        <p><strong>Date:</strong> <span id="fooddate-display">N/A</span></p>
-        <p><strong>Cost:</strong> <span id="foodcost-display">$0.00</span></p>
       </section>
     </div>
 
