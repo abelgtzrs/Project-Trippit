@@ -273,11 +273,13 @@ const packingItemInput = document.querySelector("#new-item");
 const addItemButton = document.querySelector("#add-item");
 const checklistSection = document.querySelector("#checklist-section");
 
-function addCheckbox() {
-  const labelText = packingItemInput?.value.trim();
+function addCheckbox(labelText) {
   if (!labelText) {
-    alert("Please enter an item.");
-    return;
+    labelText = packingItemInput?.value.trim();
+    if (!labelText) {
+      alert("Please enter an item.");
+      return;
+    }
   }
 
   const container = document.createElement("div");
@@ -298,13 +300,26 @@ function addCheckbox() {
   container.appendChild(label);
   checklistSection?.appendChild(container);
 
+  if (!packingItemInput.value) {
+    return;
+  }
+
   // Save checklist item to local storage
   let checklistItems = JSON.parse(localStorage.getItem('checklist')) || [];
   checklistItems.push(labelText);
   localStorage.setItem('checklist', JSON.stringify(checklistItems));
 
-
   packingItemInput.value = "";
+}
+
+function saveChecklistToLocalStorage() {
+  const checklistItems = Array.from(document.querySelectorAll("#checklist-section div label")).map(label => label.textContent);
+  localStorage.setItem('checklist', JSON.stringify(checklistItems));
+}
+
+function saveChartToLocalStorage(labels, data) {
+  localStorage.setItem('chartLabels', JSON.stringify(labels));
+  localStorage.setItem('chartData', JSON.stringify(data));
 }
 
 addItemButton?.addEventListener("click", addCheckbox);
@@ -343,12 +358,7 @@ function displayCategoryBudgets() {
     // Update chart data
     chartLabels.push(category);
     chartData.push(percentage);
-
-    //Save to local storage
-    localStorage.setItem('chartLabels', JSON.stringify(chartLabels));
-    localStorage.setItem('chartData', JSON.stringify(chartData));
   }
-
 
   if (openBudget > 0) {
     chartLabels.push("Open Budget");
@@ -363,6 +373,7 @@ function displayCategoryBudgets() {
     categoryBudgetDisplay.appendChild(openBudgetRow);
   }
 
+  saveChartToLocalStorage(chartLabels, chartData);
   renderBudgetChart(chartLabels, chartData);
 }
 
@@ -537,21 +548,13 @@ function recallLocalStorage() {
   const savedChartData = JSON.parse(localStorage.getItem('chartData')) || [];
   // Update chart with recalled data
   if (savedChartLabels.length && savedChartData.length) {
-    chartLabels.length = 0;
-    chartData.length = 0;
-    chartLabels.push(...savedChartLabels);
-    chartData.push(...savedChartData);
-    updateChart();
+    renderBudgetChart(savedChartLabels, savedChartData);
   }
 
   // Recall checklist items
   const savedChecklist = JSON.parse(localStorage.getItem('checklist')) || [];
-  savedChecklist.forEach(item => {
-    packingItemInput.value = item;
-    addCheckbox();
-  });
+  savedChecklist.forEach(item => addCheckbox(item));
 }
-
 
 // Call the function to recall data when the page loads
 document.addEventListener('DOMContentLoaded', recallLocalStorage);
