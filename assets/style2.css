@@ -114,4 +114,10 @@ body {
     font-size: 14px;
     margin-bottom: 5px;
   }
+  .logo {
+    height: 40px; /* Adjust height of the logo */
+    width: auto; /* Keep the aspect ratio */
+    margin-right: 10px; /* Space between logo and title */
+    vertical-align: middle; /* Aligns logo vertically with the text */
+  }
   

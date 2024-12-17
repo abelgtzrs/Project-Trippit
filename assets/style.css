@@ -1,9 +1,12 @@
+
+
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: #0c0404;
   background-image: url(https://images.squarespace-cdn.com/content/v1/5ac51fef12b13f3895955c3e/1539720328891-AAXM8Y3W57I764LLXDIE/personal+and+car+loans);
+
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -166,6 +169,11 @@ section:not(.hidden) {
   display: block;
 }
 
+#left-column,
+ #middle-column,
+ #right-column{
+  background-color: #c3cac4;
+}
 .column label,
 .column input,
 .column button {
@@ -176,7 +184,7 @@ section:not(.hidden) {
 
 .column button {
   padding: 10px;
-  background-color: #2bca50;
+  background-color: #233727;
   color: white;
   border: none;
   border-radius: 5px;
@@ -188,6 +196,7 @@ section:not(.hidden) {
 .column button:hover {
   background-color: #218838;
 }
+
 
 #trip-management h2 {
   margin-bottom: 10px;
@@ -201,15 +210,26 @@ section:not(.hidden) {
 
 
 
-/* Responsive Design - Columns Stack Vertically */
+
 @media (max-width: 768px) {
   #columns-container {
-    flex-direction: column; /* Stack columns vertically */
-    align-items: center; /* Center align columns */
+    flex-direction: column; 
+    align-items: center; 
   }
 
   .column {
-    width: 90%; /* Each column takes up 90% of the width */
-    margin-bottom: 15px; /* Add spacing between columns */
+    width: 90%;
+    margin-bottom: 15px; 
   }
 }
+
+footer {
+  background: #384638;
+  color: #ffffff; 
+  text-align: center;
+  padding: 1rem 0;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 2rem;
+
